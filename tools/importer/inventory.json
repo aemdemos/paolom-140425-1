@@ -1,0 +1,1724 @@
+{
+  "fragments": [
+    {
+      "name": "nav",
+      "path": "/nav",
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/0-interest-credit-card",
+          "urlHash": "12e538a595b77859d7af6ca86a0dc42a5e2a311b",
+          "uuid": "12e538a5-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/gold-credit-card-rates-and-details",
+          "urlHash": "2b1b60e3c32cce0e2d0e3a841955e7a6a0da3cb3",
+          "uuid": "2b1b60e3-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/nationwide-credit-card-rates-and-details",
+          "urlHash": "2d52ffa67f3e7e371a3f8f855dbccbb7e00d1a5f",
+          "uuid": "2d52ffa6-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/select-credit-card-rates-and-details",
+          "urlHash": "6ba15646ce4e3a1ae5d0846659e696f2a621bbd6",
+          "uuid": "6ba15646-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/how-do-credit-cards-work",
+          "urlHash": "6cd04195d8c3c78486277a3c7c82796807787d7c",
+          "uuid": "6cd04195-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/classic-credit-card-rates-and-details",
+          "urlHash": "7134c071f327c3381425d23d4d4d01c954b39ff3",
+          "uuid": "7134c071-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/fees-charges",
+          "urlHash": "8cfe3c156ebe186dfc367d81bedd9a7827faf583",
+          "uuid": "8cfe3c15-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/credit-card-rates-and-details",
+          "urlHash": "abe818be505e333287e4bf173a52404a565fe49e",
+          "uuid": "abe818be-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/credit-card-declaration",
+          "urlHash": "af8486402236a0d6608286efdd6839d0f86b7a25",
+          "uuid": "af848640-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/credit-card-interest-rate-increase-faqs",
+          "urlHash": "b4ac297b18737941a065475322aaa15a385ef676",
+          "uuid": "b4ac297b-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/interest-rates",
+          "urlHash": "bafe9d096c4c63698a0e1c78c510624a9eb66977",
+          "uuid": "bafe9d09-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "path": "/footer",
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-19-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/0-interest-credit-card",
+          "urlHash": "12e538a595b77859d7af6ca86a0dc42a5e2a311b",
+          "uuid": "12e538a5-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/gold-credit-card-rates-and-details",
+          "urlHash": "2b1b60e3c32cce0e2d0e3a841955e7a6a0da3cb3",
+          "uuid": "2b1b60e3-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-08-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/nationwide-credit-card-rates-and-details",
+          "urlHash": "2d52ffa67f3e7e371a3f8f855dbccbb7e00d1a5f",
+          "uuid": "2d52ffa6-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-05-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/select-credit-card-rates-and-details",
+          "urlHash": "6ba15646ce4e3a1ae5d0846659e696f2a621bbd6",
+          "uuid": "6ba15646-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/how-do-credit-cards-work",
+          "urlHash": "6cd04195d8c3c78486277a3c7c82796807787d7c",
+          "uuid": "6cd04195-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/classic-credit-card-rates-and-details",
+          "urlHash": "7134c071f327c3381425d23d4d4d01c954b39ff3",
+          "uuid": "7134c071-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/fees-charges",
+          "urlHash": "8cfe3c156ebe186dfc367d81bedd9a7827faf583",
+          "uuid": "8cfe3c15-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-10-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-10-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-15-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/credit-card-rates-and-details",
+          "urlHash": "abe818be505e333287e4bf173a52404a565fe49e",
+          "uuid": "abe818be-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/credit-card-declaration",
+          "urlHash": "af8486402236a0d6608286efdd6839d0f86b7a25",
+          "uuid": "af848640-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/credit-card-interest-rate-increase-faqs",
+          "urlHash": "b4ac297b18737941a065475322aaa15a385ef676",
+          "uuid": "b4ac297b-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/interest-rates",
+          "urlHash": "bafe9d096c4c63698a0e1c78c510624a9eb66977",
+          "uuid": "bafe9d09-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-08-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Search",
+      "cluster": 1,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/0-interest-credit-card",
+          "urlHash": "12e538a595b77859d7af6ca86a0dc42a5e2a311b",
+          "uuid": "12e538a5-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/how-do-credit-cards-work",
+          "urlHash": "6cd04195d8c3c78486277a3c7c82796807787d7c",
+          "uuid": "6cd04195-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/fees-charges",
+          "urlHash": "8cfe3c156ebe186dfc367d81bedd9a7827faf583",
+          "uuid": "8cfe3c15-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/credit-card-rates-and-details",
+          "urlHash": "abe818be505e333287e4bf173a52404a565fe49e",
+          "uuid": "abe818be-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/credit-card-declaration",
+          "urlHash": "af8486402236a0d6608286efdd6839d0f86b7a25",
+          "uuid": "af848640-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/credit-card-interest-rate-increase-faqs",
+          "urlHash": "b4ac297b18737941a065475322aaa15a385ef676",
+          "uuid": "b4ac297b-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/interest-rates",
+          "urlHash": "bafe9d096c4c63698a0e1c78c510624a9eb66977",
+          "uuid": "bafe9d09-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-00-31fdab477b54c1b97603cabfcf99503f87e24a27",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 2,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 3,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-19-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/0-interest-credit-card",
+          "urlHash": "12e538a595b77859d7af6ca86a0dc42a5e2a311b",
+          "uuid": "12e538a5-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/gold-credit-card-rates-and-details",
+          "urlHash": "2b1b60e3c32cce0e2d0e3a841955e7a6a0da3cb3",
+          "uuid": "2b1b60e3-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-08-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/nationwide-credit-card-rates-and-details",
+          "urlHash": "2d52ffa67f3e7e371a3f8f855dbccbb7e00d1a5f",
+          "uuid": "2d52ffa6-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-05-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/select-credit-card-rates-and-details",
+          "urlHash": "6ba15646ce4e3a1ae5d0846659e696f2a621bbd6",
+          "uuid": "6ba15646-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/how-do-credit-cards-work",
+          "urlHash": "6cd04195d8c3c78486277a3c7c82796807787d7c",
+          "uuid": "6cd04195-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/classic-credit-card-rates-and-details",
+          "urlHash": "7134c071f327c3381425d23d4d4d01c954b39ff3",
+          "uuid": "7134c071-02-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/fees-charges",
+          "urlHash": "8cfe3c156ebe186dfc367d81bedd9a7827faf583",
+          "uuid": "8cfe3c15-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-10-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-10-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-15-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/credit-card-rates-and-details",
+          "urlHash": "abe818be505e333287e4bf173a52404a565fe49e",
+          "uuid": "abe818be-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/credit-card-declaration",
+          "urlHash": "af8486402236a0d6608286efdd6839d0f86b7a25",
+          "uuid": "af848640-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/credit-card-interest-rate-increase-faqs",
+          "urlHash": "b4ac297b18737941a065475322aaa15a385ef676",
+          "uuid": "b4ac297b-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/interest-rates",
+          "urlHash": "bafe9d096c4c63698a0e1c78c510624a9eb66977",
+          "uuid": "bafe9d09-03-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-08-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-04-d1af6f04edc157c85c5decd72668828ce3ff7bc8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/footer[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 4,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-07-01ea563f97a2cf54ec9f08f9cfc10c7f0b4580a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 5,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/gold-credit-card-rates-and-details",
+          "urlHash": "2b1b60e3c32cce0e2d0e3a841955e7a6a0da3cb3",
+          "uuid": "2b1b60e3-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/nationwide-credit-card-rates-and-details",
+          "urlHash": "2d52ffa67f3e7e371a3f8f855dbccbb7e00d1a5f",
+          "uuid": "2d52ffa6-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/select-credit-card-rates-and-details",
+          "urlHash": "6ba15646ce4e3a1ae5d0846659e696f2a621bbd6",
+          "uuid": "6ba15646-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/classic-credit-card-rates-and-details",
+          "urlHash": "7134c071f327c3381425d23d4d4d01c954b39ff3",
+          "uuid": "7134c071-00-42ad069831aad7fa13d09c76619d309b805d7960",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 6,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Tabs",
+      "cluster": 7,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/0-interest-credit-card",
+          "urlHash": "12e538a595b77859d7af6ca86a0dc42a5e2a311b",
+          "uuid": "12e538a5-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/how-do-credit-cards-work",
+          "urlHash": "6cd04195d8c3c78486277a3c7c82796807787d7c",
+          "uuid": "6cd04195-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/fees-charges",
+          "urlHash": "8cfe3c156ebe186dfc367d81bedd9a7827faf583",
+          "uuid": "8cfe3c15-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/credit-card-rates-and-details",
+          "urlHash": "abe818be505e333287e4bf173a52404a565fe49e",
+          "uuid": "abe818be-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/credit-card-declaration",
+          "urlHash": "af8486402236a0d6608286efdd6839d0f86b7a25",
+          "uuid": "af848640-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/credit-card-interest-rate-increase-faqs",
+          "urlHash": "b4ac297b18737941a065475322aaa15a385ef676",
+          "uuid": "b4ac297b-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/interest-rates",
+          "urlHash": "bafe9d096c4c63698a0e1c78c510624a9eb66977",
+          "uuid": "bafe9d09-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        }
+      ]
+    },
+    {
+      "name": "Embed (video)",
+      "cluster": 8,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-09-34b11596c0a94849a8c1ac282d6858f0a20c5462",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-09-34b11596c0a94849a8c1ac282d6858f0a20c5462",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 9,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-10-01fcb994e7f9c2d05e1e9fd248d47b171312b6e2",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-13-aad86711fc551db0b5bb301b122e713f48912f93",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[7]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 10,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-03-3a69eae9964ce2ebc8f945a4395238452f9e13a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Tabs",
+      "cluster": 11,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/using-your-card",
+          "urlHash": "ca32f07eff177330d7d16ce2b60fc2d3493d6931",
+          "uuid": "ca32f07e-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 12,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-08-2b86d96d7b02b53e46c1d12438fb828d7cda7dff",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/ol[1]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-09-e7227f5e9d7e15e51acaeea66003157c86830ab2",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/ol[2]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-10-070f36bcb5e471ff2694afb6f803eecface48b1e",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/ol[3]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped & bordered)",
+      "cluster": 13,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/nationwide-credit-card-rates-and-details",
+          "urlHash": "2d52ffa67f3e7e371a3f8f855dbccbb7e00d1a5f",
+          "uuid": "2d52ffa6-01-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped & bordered)",
+      "cluster": 14,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/select-credit-card-rates-and-details",
+          "urlHash": "6ba15646ce4e3a1ae5d0846659e696f2a621bbd6",
+          "uuid": "6ba15646-01-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 15,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-04-01ea563f97a2cf54ec9f08f9cfc10c7f0b4580a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-04-01ea563f97a2cf54ec9f08f9cfc10c7f0b4580a4",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 16,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/persistent-debt",
+          "urlHash": "72b9483ecd5b03ed4cdefddc788eed4b7f6a7dbc",
+          "uuid": "72b9483e-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "cluster": 17,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Embed (video)",
+      "cluster": 18,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 19,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-04-3df5fc1f29a2ec690f008f38fbb37930762e177a",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 20,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/minimum-payments",
+          "urlHash": "58dccf98aa3743de536481dffa1298de3c9b1704",
+          "uuid": "58dccf98-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 21,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+          "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+          "uuid": "901478ac-06-78bb2154dbcd6f3dc2ce3f4612103f44061374b5",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+          "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+          "uuid": "912cbc3a-06-78bb2154dbcd6f3dc2ce3f4612103f44061374b5",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped)",
+      "cluster": 22,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/interest-rates",
+          "urlHash": "bafe9d096c4c63698a0e1c78c510624a9eb66977",
+          "uuid": "bafe9d09-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 23,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/pay-credit-card",
+          "urlHash": "15038d8ef29a05462904efb9c3877bd9a675b29c",
+          "uuid": "15038d8e-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 24,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/transfer-balance",
+          "urlHash": "dab9e407b743e80e1cd2b20ee3a00b0b8ded7ba9",
+          "uuid": "dab9e407-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 25,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/how-do-credit-cards-work",
+          "urlHash": "6cd04195d8c3c78486277a3c7c82796807787d7c",
+          "uuid": "6cd04195-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 26,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-06-7fa723faea4ada5efea59b24c0b7bc7f8b19a3cc",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 27,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/change-limit-on-card",
+          "urlHash": "8c9b622ff3a994e7a57bb308aaeae79a4286c5ab",
+          "uuid": "8c9b622f-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "cluster": 28,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-18-37df9c41556f009262fa83454372ae25619c8e6d",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[5]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 29,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-07-c65be776e5725bdbd7e459712428215fa8683b28",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 30,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/credit-card-declaration",
+          "urlHash": "af8486402236a0d6608286efdd6839d0f86b7a25",
+          "uuid": "af848640-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 31,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms",
+          "urlHash": "35e4be5f0b9f00192e1f751f4e8a86638adcdd34",
+          "uuid": "35e4be5f-03-978546d74ae3794202f298b23de3b3221cf0def9",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 32,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-04-6c798c4e196beefe52402917e206f269340db238",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ol[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 33,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/credit-card-interest-rate-increase-faqs",
+          "urlHash": "b4ac297b18737941a065475322aaa15a385ef676",
+          "uuid": "b4ac297b-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 34,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-17-704e76cbbfe4e161580bed47f77005501001bce1",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[6]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 35,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-03-978546d74ae3794202f298b23de3b3221cf0def9",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 36,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-08-8f3eec84293fe54278d2b0fe9205c72ef294cde8",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 37,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-06-01939b89694620760b93964efca6573a66715e5e",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 38,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-12-8ee39a5f7207060756fde21373dffdffc4735350",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Tabs",
+      "cluster": 39,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/check-card-balance",
+          "urlHash": "adab6cab05d3c42a19b59b586f840d599a168aeb",
+          "uuid": "adab6cab-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 40,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/add-or-remove-card-holder",
+          "urlHash": "f88d200ea3b75e6af944df8245cb42a10d65732a",
+          "uuid": "f88d200e-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 41,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/0-interest-credit-card",
+          "urlHash": "12e538a595b77859d7af6ca86a0dc42a5e2a311b",
+          "uuid": "12e538a5-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 42,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/fees-charges",
+          "urlHash": "8cfe3c156ebe186dfc367d81bedd9a7827faf583",
+          "uuid": "8cfe3c15-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped & bordered)",
+      "cluster": 43,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/classic-credit-card-rates-and-details",
+          "urlHash": "7134c071f327c3381425d23d4d4d01c954b39ff3",
+          "uuid": "7134c071-01-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 44,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-14-63b30bec0eed9d0be04a10f6308b17b460c47632",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[8]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped & bordered)",
+      "cluster": 45,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/credit-card-rates-and-details",
+          "urlHash": "abe818be505e333287e4bf173a52404a565fe49e",
+          "uuid": "abe818be-02-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 46,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help",
+          "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+          "uuid": "2d4966a9-04-54c643b2b4335b195801ad95f921cfb575e321e5",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Tabs",
+      "cluster": 47,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-01-a79092a772a7f59bd5977059f6344d39799ada03",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[3]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 48,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-06-4887efe8409bdb2118825ee95a21b8a12e15decc",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped & bordered)",
+      "cluster": 49,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/terms/gold-credit-card-rates-and-details",
+          "urlHash": "2b1b60e3c32cce0e2d0e3a841955e7a6a0da3cb3",
+          "uuid": "2b1b60e3-01-6a6b936442ef75ae2bba27fa369f3862bc679202",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 50,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/cancel-your-credit-card",
+          "urlHash": "fe60f9234ae4c3eeca38e0b6714e922281a789b6",
+          "uuid": "fe60f923-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "unknown",
+      "cluster": 51,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards/help/section-75-claims",
+          "urlHash": "0ca11867f9ac0211adf1036105ba1f490bc9802c",
+          "uuid": "0ca11867-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 52,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-02-6d8941af988fedf2e1f783e10aa5849a9691ef66",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 53,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-05-afcc61d965dd541c92c7e2bfe77691c665734190",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
+        }
+      ]
+    },
+    {
+      "name": "Cards (no images)",
+      "cluster": 54,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/credit-cards",
+          "urlHash": "084975441268f4a38fe6c733841bece456132163",
+          "uuid": "08497544-15-750cefd93b056e07601b05d4f6ded5b890a56e81",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 55,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/about-us",
+          "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+          "uuid": "cec38136-04-3df5fc1f29a2ec690f008f38fbb37930762e177a",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 56,
+      "instances": [
+        {
+          "url": "https://www.nationwide.co.uk/",
+          "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+          "uuid": "97002b4e-05-3df5fc1f29a2ec690f008f38fbb37930762e177a",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    }
+  ],
+  "outliers": [
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-04-3df5fc1f29a2ec690f008f38fbb37930762e177a",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-05-a79787025b3bea8b3b4ff4103b4ec89fc5844025",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-06-1fece8bac9380d192ba6c427b7694d36985ec4e8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-07-dc35e64ab03aa03427298aea11ec415112515d9c",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/h2[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-11-c229b94b6486e7ae4bc83c7cfd92ebdcd4e5fc44",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-13-8f3eec84293fe54278d2b0fe9205c72ef294cde8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-14-78bb2154dbcd6f3dc2ce3f4612103f44061374b5",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards",
+      "urlHash": "084975441268f4a38fe6c733841bece456132163",
+      "uuid": "08497544-16-f3ac7ad7efc9f5d90751039a40843267a53e8ccc",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[6]/div[1]/h2[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/help",
+      "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+      "uuid": "2d4966a9-03-978546d74ae3794202f298b23de3b3221cf0def9",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/help",
+      "urlHash": "2d4966a902552b172d7b7415add589e94410556d",
+      "uuid": "2d4966a9-05-985b77f821da992dc617af5a7c0360591ebeb07e",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/h2[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+      "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+      "uuid": "901478ac-05-8f3eec84293fe54278d2b0fe9205c72ef294cde8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+      "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+      "uuid": "901478ac-07-0b7629ee2e044e7d08c78b7878fc7de1472969fc",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/h2[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/purchase-credit-card",
+      "urlHash": "901478acf8d45d38815e8884cacec31c9865652a",
+      "uuid": "901478ac-08-df2047c0544414479113ba213f8bc0f617fc91f2",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+      "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+      "uuid": "912cbc3a-05-8f3eec84293fe54278d2b0fe9205c72ef294cde8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+      "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+      "uuid": "912cbc3a-07-0b7629ee2e044e7d08c78b7878fc7de1472969fc",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/h2[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/credit-cards/balance-transfer-credit-card",
+      "urlHash": "912cbc3a93acdf5a637a86d4b9d7ff81ed3cd74b",
+      "uuid": "912cbc3a-08-df2047c0544414479113ba213f8bc0f617fc91f2",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/",
+      "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+      "uuid": "97002b4e-03-e406b0a51776f2572d047df541fb1af92f2f8be8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/",
+      "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+      "uuid": "97002b4e-07-8d893e3e0d2fdb35ee4b89a8f58d37127260dee4",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/",
+      "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+      "uuid": "97002b4e-09-78bb2154dbcd6f3dc2ce3f4612103f44061374b5",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/",
+      "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+      "uuid": "97002b4e-11-750cefd93b056e07601b05d4f6ded5b890a56e81",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/",
+      "urlHash": "97002b4ede7b79107af5678e9e21e4edee4f33c5",
+      "uuid": "97002b4e-12-dde603b5ddb2905d2f7ebfb64e8dc3b44cfb7498",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[6]"
+    },
+    {
+      "url": "https://www.nationwide.co.uk/about-us",
+      "urlHash": "cec381361e708d80e76206de40fb8353e0503b45",
+      "uuid": "cec38136-03-978546d74ae3794202f298b23de3b3221cf0def9",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+    }
+  ]
+}
