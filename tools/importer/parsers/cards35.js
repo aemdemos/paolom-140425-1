@@ -1,43 +1,61 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
   const headerRow = ['Cards'];
+  const cards = [];
 
-  const cardsData = Array.from(element.querySelectorAll('.NelComponents__Col-sc-vsly48-38')).map((card) => {
-    const title = card.querySelector('h2')?.textContent.trim();
-    const description = card.querySelector('div[data-component="RichText"] p')?.textContent.trim();
-    const listItems = Array.from(card.querySelectorAll('ul > li')).map((li) => li.textContent.trim()).join('<br>');
-    const button = card.querySelector('a[data-testid="PrimaryButton"]')?.textContent.trim();
+  const cardSections = element.querySelectorAll('.SideBySideLayout__ContainerWrapper-sc-nb03j7-1');
 
-    const content = document.createElement('div');
+  cardSections.forEach((section) => {
+    const titleElement = section.querySelector('h2');
+    const descriptionElement = section.querySelector('p');
+    const listElement = section.querySelector('ul');
+    const buttonElement = section.querySelector('a');
+
+    const title = titleElement ? titleElement.textContent.trim() : '';
+    const description = descriptionElement ? descriptionElement.textContent.trim() : '';
+
+    const listItems = [];
+    if (listElement) {
+      listElement.querySelectorAll('li').forEach((li) => {
+        listItems.push(li.textContent.trim());
+      });
+    }
+
+    const button = buttonElement ? document.createElement('a') : null;
+    if (buttonElement) {
+      button.href = buttonElement.href;
+      button.textContent = buttonElement.textContent.trim();
+    }
+
+    const textContent = document.createElement('div');
     if (title) {
-      const heading = document.createElement('strong');
-      heading.textContent = title;
-      content.appendChild(heading);
+      const titleNode = document.createElement('h3');
+      titleNode.textContent = title;
+      textContent.appendChild(titleNode);
     }
-
     if (description) {
-      const descElement = document.createElement('p');
-      descElement.textContent = description;
-      content.appendChild(descElement);
+      const descriptionNode = document.createElement('p');
+      descriptionNode.textContent = description;
+      textContent.appendChild(descriptionNode);
     }
-
-    if (listItems) {
-      const listElement = document.createElement('div');
-      listElement.innerHTML = listItems;
-      content.appendChild(listElement);
+    if (listItems.length > 0) {
+      const listNode = document.createElement('ul');
+      listItems.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        listNode.appendChild(listItem);
+      });
+      textContent.appendChild(listNode);
     }
-
     if (button) {
-      const buttonElement = document.createElement('a');
-      buttonElement.textContent = button;
-      content.appendChild(buttonElement);
+      textContent.appendChild(button);
     }
 
-    return [content];
+    cards.push([textContent]);
   });
 
-  const tableData = [headerRow, ...cardsData];
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+  const tableData = [headerRow, ...cards];
+  const table = WebImporter.DOMUtils.createTable(tableData, document);
 
-  element.replaceWith(blockTable);
+  element.replaceWith(table);
 }

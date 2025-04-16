@@ -1,56 +1,52 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  if (!element || !(element instanceof document.defaultView.HTMLElement)) {
-    console.error('Invalid or undefined element provided.');
-    return;
-  }
+    const headerRow = ['Columns']; // Ensure the header matches the example exactly.
 
-  const sections = Array.from(element.querySelectorAll('section'));
-  if (sections.length === 0) {
-    console.error('No section elements found in the provided element.');
-    return;
-  }
+    // Collect all sections from the provided HTML element.
+    const sections = Array.from(element.querySelectorAll('section'));
 
-  const headerRow = ['Columns'];
-  const columns = [];
+    // Map each section to create a content row dynamically.
+    const contentRows = sections.map((section) => {
+        // Extract the heading from the section or default to an empty string if missing.
+        const heading = section.querySelector('h2')?.textContent.trim() || '';
 
-  sections.forEach((section) => {
-    const title = section.querySelector('h2')?.textContent.trim() || '';
-    const listItems = Array.from(section.querySelectorAll('li')).map((item) => {
-      const link = item.querySelector('a');
-      if (link) {
-        const text = link.textContent.trim();
-        const href = link.getAttribute('href');
-        const anchor = document.createElement('a');
-        anchor.textContent = text;
-        anchor.href = href;
-        return anchor;
-      } else {
-        const fallbackText = document.createTextNode(item.textContent.trim());
-        return fallbackText;
-      }
+        // Extract all list items within the section.
+        const listItems = Array.from(section.querySelectorAll('li')).map((item) => {
+            const anchor = item.querySelector('a');
+            const linkContent = anchor?.querySelector('span')?.textContent.trim() || ''; // Handle empty or missing span text.
+            const href = anchor?.href || ''; // Default to an empty string if href is missing.
+
+            // Create an anchor element dynamically.
+            const linkElement = document.createElement('a');
+            linkElement.href = href;
+            linkElement.textContent = linkContent;
+            linkElement.target = anchor?.target || '_self'; // Default to '_self' if target is missing.
+            linkElement.rel = anchor?.rel || ''; // Default to an empty string if rel is missing.
+
+            return linkElement; // Return the constructed anchor element.
+        });
+
+        // Combine heading and list items into a single content cell.
+        const contentCell = document.createElement('div');
+        if (heading) { // Only add heading if it's non-empty.
+            const headingElement = document.createElement('strong');
+            headingElement.textContent = heading;
+            contentCell.appendChild(headingElement);
+        }
+        listItems.forEach((link) => contentCell.appendChild(link));
+
+        return contentCell; // Return the constructed content cell.
     });
 
-    const columnContent = document.createElement('div');
-    if (title) {
-      const heading = document.createElement('h3');
-      heading.textContent = title;
-      columnContent.appendChild(heading);
-    }
+    // Prepare the final table structure with the header and content rows.
+    const cells = [
+        headerRow,
+        contentRows
+    ];
 
-    const list = document.createElement('ul');
-    listItems.forEach((item) => {
-      const listItem = document.createElement('li');
-      listItem.appendChild(item);
-      list.appendChild(listItem);
-    });
-    columnContent.appendChild(list);
+    // Create the block table using the helper function.
+    const block = WebImporter.DOMUtils.createTable(cells, document);
 
-    columns.push(columnContent);
-  });
-
-  const tableData = [headerRow, columns];
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
-
-  element.replaceWith(blockTable);
+    // Replace the original element with the new block table.
+    element.replaceWith(block);
 }

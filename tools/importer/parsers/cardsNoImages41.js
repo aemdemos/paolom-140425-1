@@ -1,45 +1,56 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
+  // Define the header row based on the block name provided in the example
   const headerRow = ['Cards (no images)'];
+
+  // Initialize rows for the table.
   const rows = [];
 
-  const cardElements = element.querySelectorAll('div[data-component="CardsGrid"] div[data-component="CardCTAButton"]');
+  // Select all cards within the element
+  const cards = element.querySelectorAll('.ActionCard__ActionCardOuter-sc-niucah-0');
 
-  cardElements.forEach((card) => {
-    const cardTitle = card.querySelector('h2[data-ref="heading"]')?.textContent.trim();
-    const cardDescription = card.querySelector('div[data-testid="CardContent"] div.Content-sc-mh9bui-0 p')?.textContent.trim();
-    const cardCTA = card.querySelector('a[data-testid="PrimaryButton"]')?.textContent.trim();
+  // Loop through each card to extract its content
+  cards.forEach((card) => {
+    // Extract the heading, description, and link from the card
+    const heading = card.querySelector('[data-ref="heading"]');
+    const description = card.querySelector('[data-testid="CardContent"] p');
+    const link = card.querySelector('[data-ref="link"]');
 
-    const cardContent = document.createElement('div');
+    // Initialize an array to hold the content for this cell
+    const cellContent = [];
 
-    if (cardTitle) {
-      const titleElement = document.createElement('strong');
-      titleElement.textContent = cardTitle;
-      cardContent.appendChild(titleElement);
+    // Add the heading if it exists
+    if (heading) {
+      const headingElement = document.createElement('strong');
+      headingElement.textContent = heading.textContent.trim();
+      cellContent.push(headingElement);
     }
 
-    if (cardDescription) {
+    // Add the description if it exists
+    if (description) {
       const descriptionElement = document.createElement('p');
-      descriptionElement.textContent = cardDescription;
-      cardContent.appendChild(descriptionElement);
+      descriptionElement.textContent = description.textContent.trim();
+      cellContent.push(descriptionElement);
     }
 
-    if (cardCTA) {
-      const ctaElement = document.createElement('p');
+    // Add the link if it exists (directly without wrapping it in unnecessary elements)
+    if (link) {
       const linkElement = document.createElement('a');
-      linkElement.textContent = cardCTA;
-      const href = card.querySelector('a[data-testid="PrimaryButton"]')?.href;
-      if (href) {
-        linkElement.setAttribute('href', href);
-      }
-      ctaElement.appendChild(linkElement);
-      cardContent.appendChild(ctaElement);
+      linkElement.href = link.href;
+      linkElement.textContent = link.textContent.trim();
+      cellContent.push(linkElement);
     }
 
-    rows.push([cardContent]);
+    // Add this row's cell content to the table rows
+    rows.push([cellContent]);
   });
 
+  // Combine the header row and content rows into the final table data
   const tableData = [headerRow, ...rows];
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
-  element.replaceWith(blockTable);
+
+  // Create the table using the helper function
+  const table = WebImporter.DOMUtils.createTable(tableData, document);
+
+  // Replace the original element with the generated table
+  element.replaceWith(table);
 }

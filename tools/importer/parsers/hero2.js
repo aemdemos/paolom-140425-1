@@ -1,35 +1,35 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract relevant elements dynamically
-  const headingElement = element.querySelector('[data-ref="heading"]');
+  // Validate input
+  if (!element || !document) return;
+
+  // Extract the title (mandatory) and subheading (optional)
+  const titleElement = element.querySelector('.SectionHero__StyledHeading-sc-fol9tk-5');
   const subheadingElement = element.querySelector('.Content-sc-mh9bui-0');
 
-  // Create cells for the table
-  const headerRow = ['Hero']; // Header row must match example exactly
+  // Handle edge cases (missing title or subheading)
+  const titleText = titleElement ? titleElement.textContent.trim() : '';
+  const subheadingText = subheadingElement ? subheadingElement.textContent.trim() : '';
 
-  const contentRow = [];
+  // Create HTML elements for extracted content
+  const heading = document.createElement('h1');
+  heading.textContent = titleText; // Correctly populate the <h1> tag with the extracted title
 
-  // Handle edge cases for missing or empty elements
-  if (headingElement && headingElement.innerHTML.trim() !== '') {
-    const heading = document.createElement('h1');
-    heading.innerHTML = headingElement.innerHTML; // Dynamically extract heading content
-    contentRow.push(heading);
-  }
+  const subheading = document.createElement('p');
+  subheading.textContent = subheadingText; // Correctly populate the <p> tag with the extracted subheading
 
-  // Avoid duplicate <p> tags by ensuring proper wrapping
-  if (subheadingElement && subheadingElement.innerHTML.trim() !== '') {
-    const subheading = document.createElement('p');
-    subheading.textContent = subheadingElement.textContent; // Use textContent instead of innerHTML
-    contentRow.push(subheading);
-  }
+  // Define table rows
+  const headerRow = ['Hero']; // Match the header row exactly as per example
+  const contentRow = [heading, subheading]; // Include both title and subheading in the content row without nesting
 
+  // Create table structure
   const cells = [
-    headerRow,
-    contentRow.length > 0 ? [contentRow] : []
+    headerRow, // Header row
+    contentRow // Content row
   ];
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace original element
-  element.replaceWith(blockTable);
+  // Replace original element with the newly created block
+  element.replaceWith(block);
 }

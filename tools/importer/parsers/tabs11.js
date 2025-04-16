@@ -1,20 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
   const headerRow = ['Tabs'];
-  const rows = [];
 
-  // Collecting tab labels and content
-  const sections = element.querySelectorAll('h2');
+  const tabs = [];
+
+  // Extract title and content pairs
+  const sections = element.querySelectorAll('h2 + div.Content-sc-mh9bui-0');
   sections.forEach((section) => {
-    const label = section.textContent.trim();
-    const content = section.nextElementSibling.cloneNode(true);
-    rows.push([label, content]);
+    const heading = section.previousElementSibling;
+    const title = heading ? heading.textContent.trim() : '';
+
+    const content = section.cloneNode(true); // Clone the content div
+
+    // Remove unnecessary wrapper classes, if any
+    content.classList.remove('Content-sc-mh9bui-0', 'RichText__StyledRichTextContent-sc-1j7koit-0', 'passthru');
+
+    tabs.push([title, content]);
   });
 
-  // Creating the table
-  const cells = [headerRow, ...rows];
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  const cells = [headerRow, ...tabs];
 
-  // Replacing the original element
-  element.replaceWith(blockTable);
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element with the new block
+  element.replaceWith(block);
 }

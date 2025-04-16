@@ -2,41 +2,56 @@
 export default function parse(element, { document }) {
   const headerRow = ['Columns'];
 
-  const cells = [];
-  // Add header row
-  cells.push(headerRow);
+  // Collect the two column elements
+  const columns = element.querySelectorAll('[data-ref="gridColumn"]');
 
-  const columns = Array.from(element.querySelectorAll('[data-ref="gridColumn"]'));
+  // Parse the content within each column
+  const columnContent = Array.from(columns).map((col) => {
+    const contentItems = [];
 
-  const contentRows = columns.map((column) => {
-    const titleElement = column.querySelector('[data-ref="heading"]');
-    const title = titleElement ? titleElement.textContent.trim() : '';
+    // Add horizontal rule for section separation
+    const hrElement = document.createElement('hr');
+    contentItems.push(hrElement);
 
-    const descriptionElement = column.querySelector('[data-component="RichText"] p');
-    const description = descriptionElement ? descriptionElement.textContent.trim() : '';
-
-    const linkElement = column.querySelector('[data-ref="link"]');
-    const link = document.createElement('a');
-    if (linkElement) {
-      link.href = linkElement.href;
-      link.textContent = linkElement.textContent.trim();
+    // Extract heading
+    const heading = col.querySelector('[data-ref="heading"]');
+    if (heading && heading.textContent.trim()) {
+      const headingElement = document.createElement('h3');
+      headingElement.textContent = heading.textContent.trim();
+      contentItems.push(headingElement);
     }
 
-    // Group all content into a single cell for each column
-    const contentCell = [
-      document.createElement('hr'),
-      title,
-      description,
-      link,
-    ];
+    // Extract rich text
+    const richText = col.querySelector('[data-component="RichText"]');
+    if (richText) {
+      const paragraph = richText.querySelector('p');
+      if (paragraph && paragraph.textContent.trim()) {
+        const paragraphElement = document.createElement('p');
+        paragraphElement.textContent = paragraph.textContent.trim();
+        contentItems.push(paragraphElement);
+      }
+    }
 
-    return [contentCell];
+    // Extract link
+    const link = col.querySelector('[data-ref="link"]');
+    if (link && link.textContent.trim()) {
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.textContent.trim();
+      contentItems.push(anchor);
+    }
+
+    return contentItems;
   });
 
-  // Ensure each row is correctly formatted as an array
-  cells.push(...contentRows);
+  // Create the table structure
+  const cells = [
+    headerRow,
+    columnContent // Each column's content is correctly formatted as an array of elements
+  ];
 
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
-  element.replaceWith(table);
+  // Replace the original element with the new block table
+  element.replaceWith(blockTable);
 }

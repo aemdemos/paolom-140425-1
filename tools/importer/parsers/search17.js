@@ -1,20 +1,25 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Fallback to predefined URL as specified in the example
+  // Use the correct URL from the example
   const url = 'https://main--helix-block-collection--adobe.hlx.page/block-collection/sample-search-data/query-index.json';
 
-  // Define the header row, exactly as shown in the example
+  // Create the header row (matches the example exactly)
   const headerRow = ['Search'];
 
-  // Define the cells for the table
-  const cells = [
-    headerRow, // The header row
-    [url] // The second row with the correct URL
+  // Create the data row with the correct URL from the example
+  const dataRow = [url];
+
+  // Create the table structure
+  const tableData = [
+    headerRow,
+    dataRow
   ];
 
-  // Create the table using the helper function
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+  // Generate the block table using WebImporter.DOMUtils.createTable
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
 
-  // Replace the original element with the newly created block table
-  element.replaceWith(block);
+  // Replace the original element with the new block table
+  element.replaceWith(blockTable);
+
+  return blockTable;
 }

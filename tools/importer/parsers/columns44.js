@@ -1,57 +1,56 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    // Helper function to extract content from a column
-    const extractColumnContent = (columnElement) => {
-        const header = columnElement.querySelector('h3');
-        const paragraphs = columnElement.querySelectorAll('div[data-component="RichText"] p');
-        const link = columnElement.querySelector('a[data-ref="link"]');
+  const headerRow = ['Columns'];
 
-        // Extract text and link content
-        const headerText = header ? header.textContent.trim() : '';
-        const paragraphTexts = Array.from(paragraphs).map(p => p.textContent.trim());
-        const linkElement = link ? document.createElement('a') : null;
-        if (linkElement) {
-            linkElement.href = link.href;
-            linkElement.textContent = link.textContent.trim();
-        }
+  // Helper function to extract the relevant content for the column
+  function extractContent(container) {
+    const heading = container.querySelector('[data-component="Heading3"]');
+    const image = container.querySelector('[data-component="Image"] img');
+    const richText = container.querySelector('[data-component="RichText"]');
+    const link = container.querySelector('[data-ref="link"]');
 
-        return {
-            headerText,
-            paragraphTexts,
-            linkElement,
-        };
-    };
+    const contentElements = [];
 
-    // Extract columns
-    const columns = element.querySelectorAll('div[data-ref="gridColumn"]');
-    const columnContent = Array.from(columns).map(extractColumnContent);
+    if (heading) {
+      const headingElement = document.createElement('h3');
+      headingElement.textContent = heading.textContent;
+      contentElements.push(headingElement);
+    }
 
-    // Create table cells
-    const headerRow = ['Columns'];
-    const contentRow = columnContent.map(({ headerText, paragraphTexts, linkElement }) => {
-        const container = document.createElement('div');
+    if (image) {
+      const imageElement = document.createElement('img');
+      imageElement.src = image.src;
+      imageElement.alt = image.alt;
+      contentElements.push(imageElement);
+    }
 
-        const header = document.createElement('h3');
-        header.textContent = headerText;
-        container.appendChild(header);
+    if (richText) {
+      contentElements.push(...richText.children);
+    }
 
-        paragraphTexts.forEach(text => {
-            const paragraph = document.createElement('p');
-            paragraph.textContent = text;
-            container.appendChild(paragraph);
-        });
+    if (link) {
+      const linkElement = document.createElement('a');
+      linkElement.href = link.href;
+      linkElement.textContent = link.textContent;
+      contentElements.push(linkElement);
+    }
 
-        if (linkElement) {
-            container.appendChild(linkElement);
-        }
+    return contentElements;
+  }
 
-        return container;
-    });
+  // Extract content for each column
+  const columns = Array.from(element.querySelectorAll('[data-ref="gridColumn"]'))
+    .map((column) => extractContent(column));
 
-    // Create table block
-    const tableData = [headerRow, contentRow];
-    const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+  // Prepare the table data
+  const tableData = [
+    headerRow,
+    columns
+  ];
 
-    // Replace original element with the block table
-    element.replaceWith(blockTable);
+  // Create the table block
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+
+  // Replace the original element with the new block table
+  element.replaceWith(blockTable);
 }

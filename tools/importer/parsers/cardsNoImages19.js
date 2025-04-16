@@ -4,38 +4,33 @@ export default function parse(element, { document }) {
 
   const rows = [];
 
-  // Extract the heading from the element
-  const heading = element.querySelector('h2');
-
+  const heading = element.querySelector('h2[data-ref="heading"]');
   if (heading) {
-    rows.push([heading.cloneNode(true)]);
+    rows.push([heading.textContent.trim()]);
   }
 
-  // Extract the list of links dynamically
-  const list = element.querySelector('ul');
-
-  if (list) {
-    const items = Array.from(list.querySelectorAll('li'));
-    items.forEach((item) => {
-      const link = item.querySelector('a');
-      if (link) {
-        rows.push([link.cloneNode(true)]);
+  const listItems = element.querySelectorAll('ul[data-ref="list"] li');
+  listItems.forEach((item) => {
+    const link = item.querySelector('a[data-ref="link"]');
+    if (link) {
+      const linkText = link.querySelector('span[data-ref="linkContent"]');
+      if (linkText) {
+        rows.push([linkText.textContent.trim()]);
       }
-    });
-  }
+    }
+  });
 
-  // Extract footer link dynamically
-  const footer = element.querySelector('footer');
-  if (footer) {
-    const footerLink = footer.querySelector('a');
-    if (footerLink) {
-      rows.push([footerLink.cloneNode(true)]);
+  const footerLink = element.querySelector('footer a[data-ref="link"]');
+  if (footerLink) {
+    const footerText = footerLink.querySelector('span[data-ref="linkContent"]');
+    if (footerText) {
+      rows.push([footerText.textContent.trim()]);
     }
   }
 
-  // Create the table using WebImporter.DOMUtils.createTable
-  const table = WebImporter.DOMUtils.createTable([headerRow, ...rows], document);
+  const tableData = [headerRow, ...rows];
 
-  // Replace the original element with the new block table
+  const table = WebImporter.DOMUtils.createTable(tableData, document);
+
   element.replaceWith(table);
 }

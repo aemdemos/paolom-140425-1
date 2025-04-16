@@ -1,52 +1,42 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const cards = Array.from(element.querySelectorAll('[data-component="CardCTATextLinks"]'));
+  const headerRow = ['Cards'];
 
-  const cells = [
-    ['Cards']
-  ];
+  // Extracting all card elements
+  const rows = [...element.querySelectorAll('[data-component="CardCTATextLinks"]')].map(card => {
+    // Extracting image element
+    const imageContainer = card.querySelector('[data-testid="ImageContainer"]');
+    const image = imageContainer ? imageContainer.cloneNode(true) : document.createElement('div');
 
-  cards.forEach((card) => {
-    const image = card.querySelector('[data-testid="ImageContainer"]');
-    const title = card.querySelector('[data-ref="heading"]')?.textContent;
-    const description = card.querySelector('[data-testid="CardContent"] p')?.textContent;
-    const link = card.querySelector('[data-ref="link"]');
-
-    // Handle image extraction
-    const imageElement = image ? document.createElement('div') : null;
-    if (imageElement && image.style.backgroundImage) {
-      const imageUrl = image.style.backgroundImage.match(/url\("(.*?)"\)/)?.[1];
-      if (imageUrl) {
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        imageElement.appendChild(img);
-      }
-    }
-
-    // Handle text content extraction
-    const content = [];
+    // Extracting title
+    const titleElement = card.querySelector('[data-ref="heading"]');
+    const title = titleElement ? document.createElement('strong') : null;
     if (title) {
-      const titleElement = document.createElement('h3');
-      titleElement.textContent = title;
-      content.push(titleElement);
-    }
-    if (description) {
-      const descriptionElement = document.createElement('p');
-      descriptionElement.textContent = description;
-      content.push(descriptionElement);
-    }
-    if (link) {
-      const linkElement = document.createElement('a');
-      linkElement.href = link.href;
-      linkElement.textContent = link.querySelector('span')?.textContent;
-      content.push(linkElement);
+      title.textContent = titleElement.textContent.trim();
     }
 
-    // Add card row to cells
-    cells.push([imageElement, content]);
+    // Extracting description
+    const descriptionElement = card.querySelector('[data-testid="CardContent"] p');
+    const description = descriptionElement ? descriptionElement.textContent.trim() : '';
+
+    // Extracting link
+    const linkElement = card.querySelector('[data-ref="link"]');
+    const link = linkElement ? linkElement.cloneNode(true) : null;
+
+    // Combining content into a single cell
+    const textContent = document.createElement('div');
+    if (title) textContent.appendChild(title);
+    if (description) textContent.appendChild(document.createTextNode(description));
+    if (link) textContent.appendChild(link);
+
+    // Creating a row with image and text content
+    return [image, textContent];
   });
 
-  // Create table and replace element
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(block);
+  // Creating the table structure
+  const cells = [headerRow, ...rows];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replacing the original element with the table
+  element.replaceWith(table);
 }

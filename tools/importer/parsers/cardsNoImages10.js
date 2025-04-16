@@ -2,40 +2,29 @@
 export default function parse(element, { document }) {
   const headerRow = ['Cards (no images)'];
 
-  const cards = Array.from(element.querySelectorAll('li')).map((card) => {
-    // Extract title and description dynamically
-    const titleElement = card.querySelector('p > strong');
-    const descriptionElement = card.querySelector('p');
+  // Extract the main title
+  const titleElement = element.querySelector('[data-component="Heading2"]');
 
-    const title = titleElement ? titleElement.textContent.trim() : '';
-    const description = descriptionElement ? descriptionElement.textContent.replace(title, '').trim() : '';
+  // Extract the list items
+  const listItems = Array.from(
+    element.querySelectorAll('[data-component="ListTicksCrosses"] li')
+  );
 
-    // Ensure only rows with valid content are included
-    if (!title && !description) {
-      return null; // Skip empty rows
+  const rows = listItems.map((item) => {
+    const contentElement = item.querySelector('p');
+    // Handle edge case for missing content
+    if (!contentElement) {
+      return undefined; // Exclude entirely
     }
+    return [contentElement.cloneNode(true)];
+  }).filter(Boolean); // Remove undefined rows
 
-    // Combine extracted title and description with proper HTML formatting
-    const cardContent = document.createElement('div');
-    if (title) {
-      const titleNode = document.createElement('strong');
-      titleNode.textContent = title;
-      cardContent.appendChild(titleNode);
-    }
-    if (description) {
-      const descriptionNode = document.createElement('p');
-      descriptionNode.textContent = description;
-      cardContent.appendChild(descriptionNode);
-    }
+  // Combine header and rows
+  const tableData = [headerRow, ...rows];
 
-    return [cardContent];
-  }).filter(Boolean); // Filter out null rows
+  // Create the table
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
 
-  const tableData = [headerRow, ...cards];
-
-  // Create the block table
-  const table = WebImporter.DOMUtils.createTable(tableData, document);
-
-  // Replace the original element with the table
-  element.replaceWith(table);
+  // Replace the original element with the new table
+  element.replaceWith(blockTable);
 }

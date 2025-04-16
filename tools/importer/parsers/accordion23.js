@@ -1,29 +1,37 @@
-/* global WebImporter */
 export default function parse(element, { document }) {
-  // Define the header row according to the example provided
+  /* global WebImporter */
+
+  // Define the exact header for the block table
   const headerRow = ['Accordion'];
 
-  // Extract rows by iterating over h2 elements and their contents
-  const rows = Array.from(element.querySelectorAll('h2')).map((heading) => {
-    const title = heading.textContent.trim();
+  // Initialize an array to collect rows for the table
+  const rows = [];
 
-    // Collect all sibling elements until the next h2 or end
-    const content = [];
-    let nextSibling = heading.nextElementSibling;
-    while (nextSibling && nextSibling.tagName !== 'H2') {
-      content.push(nextSibling);
-      nextSibling = nextSibling.nextElementSibling;
+  // Find all H2 headers in the element (indicating sections)
+  const headers = element.querySelectorAll('h2');
+
+  headers.forEach((header) => {
+    // Extract the content following each header
+    let contentElement = header.nextElementSibling;
+    const content = []; // Collect all content for this section
+
+    while (contentElement && !contentElement.matches('h2') && !contentElement.matches('hr')) {
+      if (contentElement.textContent.trim() !== '') {
+        content.push(contentElement.cloneNode(true));
+      }
+      contentElement = contentElement.nextElementSibling; // Move to the next sibling
     }
 
-    return [title, content];
+    // If content is empty, skip the row entirely
+    if (content.length > 0) {
+      rows.push([header.textContent.trim(), content]);
+    }
   });
 
-  // Combine header row and content rows
-  const cells = [headerRow, ...rows];
+  // Create a table using WebImporter.DOMUtils.createTable
+  const tableContent = [headerRow, ...rows];
+  const blockTable = WebImporter.DOMUtils.createTable(tableContent, document);
 
-  // Create the table using the provided helper function
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the new table
-  element.replaceWith(table);
+  // Replace the original element with the new structured block table
+  element.replaceWith(blockTable);
 }

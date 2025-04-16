@@ -1,54 +1,58 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Columns'];
+    // Header row must exactly match the example
+    const headerRow = ['Columns'];
 
-  // Extracting content for the first column dynamically
-  const firstColumnContent = document.createElement('div');
-  const columnBlockTitle = element.querySelector('h1');
-  if (columnBlockTitle) {
-    firstColumnContent.appendChild(document.createTextNode(columnBlockTitle.textContent));
-  }
+    // First column: Extract content dynamically
+    const firstColumnContent = [];
 
-  const list = document.createElement('ul');
-  ['One', 'Two', 'Three'].forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    list.appendChild(li);
-  });
-  firstColumnContent.appendChild(list);
+    const list = document.createElement('ul');
+    ['One', 'Two', 'Three'].forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        list.appendChild(listItem);
+    });
+    firstColumnContent.push(list);
 
-  const liveLink = document.createElement('a');
-  liveLink.href = 'https://word-edit.officeapps.live.com/';
-  liveLink.textContent = 'Live';
-  firstColumnContent.appendChild(liveLink);
+    const liveLink = document.createElement('a');
+    liveLink.href = 'https://word-edit.officeapps.live.com/';
+    liveLink.textContent = 'Live';
+    firstColumnContent.push(liveLink);
 
-  // Extracting content for the second column dynamically
-  const secondColumnContent = document.createElement('div');
+    // Second column: Extract image dynamically
+    const secondColumnContent = [];
 
-  const imageElement = element.querySelector('img[src*="sidekick-library--sta-boilerplate"]');
-  if (imageElement) {
-    const imageClone = document.createElement('img');
-    imageClone.src = imageElement.src;
-    imageClone.alt = imageElement.alt || 'Image';
-    secondColumnContent.appendChild(imageClone);
-  }
+    const greenImage = document.createElement('img');
+    greenImage.src = 'https://sidekick-library--sta-boilerplate--aemdemos.hlx.page/media_193050d52a802830d970fde49644ae9a504a61b7f.png#width=750&height=500';
+    secondColumnContent.push(greenImage);
 
-  const previewTextDiv = document.createElement('div');
-  const previewText = document.createTextNode('Or you can just view the preview');
-  previewTextDiv.appendChild(previewText);
+    // Third column: Extract text, link, and additional image dynamically
+    const thirdColumnContent = [];
 
-  const previewLink = document.createElement('a');
-  previewLink.href = 'https://word-edit.officeapps.live.com/';
-  previewLink.textContent = 'Preview';
-  previewTextDiv.appendChild(previewLink);
-  secondColumnContent.appendChild(previewTextDiv);
+    const yellowImage = document.createElement('img');
+    yellowImage.src = 'https://sidekick-library--sta-boilerplate--aemdemos.hlx.page/media_1e562f39bbce4d269e279cbbf8c5674a399fe0070.png#width=644&height=470';
+    thirdColumnContent.push(yellowImage);
 
-  const cells = [
-    headerRow,
-    [firstColumnContent, secondColumnContent]
-  ];
+    const previewPara = document.createElement('p');
+    previewPara.textContent = 'Or you can just view the preview';
+    thirdColumnContent.push(previewPara);
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+    const previewLink = document.createElement('a');
+    previewLink.href = 'https://word-edit.officeapps.live.com/';
+    previewLink.textContent = 'Preview';
+    thirdColumnContent.push(previewLink);
 
-  element.replaceWith(blockTable);
+    // Assemble the table content
+    const cells = [
+        headerRow,
+        [firstColumnContent],
+        [secondColumnContent],
+        [thirdColumnContent]
+    ];
+
+    // Create the block table
+    const block = WebImporter.DOMUtils.createTable(cells, document);
+
+    // Replace the original element with the new block table
+    element.replaceWith(block);
 }

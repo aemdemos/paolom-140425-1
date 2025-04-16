@@ -1,51 +1,50 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Columns'];
-  const columnsData = [];
+    // Ensure header matches exactly
+    const headerRow = ['Columns'];
 
-  const columnElements = element.querySelectorAll('.FooterNavigation__ColumnedFooter-sc-e6atpx-0 > .NelComponents__Grid-sc-vsly48-37 > .NelComponents__Col-sc-vsly48-38');
+    // Helper function to extract data from a column
+    function extractColumnData(columnElement) {
+        const heading = columnElement.querySelector('[data-ref="heading"]');
+        const title = heading ? heading.textContent.trim() : '';
 
-  columnElements.forEach((col) => {
-    const columnContent = [];
+        const listItems = Array.from(columnElement.querySelectorAll('[data-ref="list"] li')).map(li => {
+            const link = li.querySelector('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                const text = link.textContent.trim();
+                const anchorElement = document.createElement('a');
+                anchorElement.href = href;
+                anchorElement.textContent = text;
+                return anchorElement;
+            }
+            return document.createTextNode(li.textContent.trim());
+        });
 
-    // Extract heading
-    const heading = col.querySelector('h2');
-    if (heading) {
-      const headingElement = document.createElement('h3');
-      headingElement.textContent = heading.textContent;
-      columnContent.push(headingElement);
+        const listContainer = document.createElement('ul');
+        listItems.forEach(item => {
+            const listItemElement = document.createElement('li');
+            if (item instanceof Node) {
+                listItemElement.appendChild(item);
+            } else {
+                listItemElement.textContent = item;
+            }
+            listContainer.appendChild(listItemElement);
+        });
+
+        return [
+            document.createElement('div').appendChild(document.createTextNode(title)),
+            listContainer,
+        ];
     }
 
-    // Extract list items
-    const list = col.querySelector('ul');
-    if (list) {
-      const listElement = document.createElement('ul');
-      list.querySelectorAll('li').forEach((item) => {
-        const listItem = document.createElement('li');
-        const link = item.querySelector('a');
-        if (link) {
-          const anchor = document.createElement('a');
-          anchor.href = link.href;
-          anchor.textContent = link.textContent.trim();
-          listItem.appendChild(anchor);
-        } else {
-          listItem.textContent = item.textContent.trim();
-        }
-        listElement.appendChild(listItem);
-      });
-      columnContent.push(listElement);
-    }
+    // Extract all columns data
+    const columnsData = Array.from(element.querySelectorAll('[data-ref="gridColumn"]')).map(extractColumnData);
 
-    columnsData.push(columnContent);
-  });
+    // Create table structure
+    const tableCells = [headerRow, ...columnsData];
+    const blockTable = WebImporter.DOMUtils.createTable(tableCells, document);
 
-  const tableData = [headerRow, columnsData];
-
-  if (columnsData.length === 0) {
-    console.warn('No columns extracted from the element. Please check the structure.');
-  }
-
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
-
-  element.replaceWith(blockTable);
+    // Replace original element with new block table
+    element.replaceWith(blockTable);
 }

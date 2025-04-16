@@ -2,43 +2,34 @@
 export default function parse(element, { document }) {
   const cards = Array.from(element.querySelectorAll('.ActionCard__ActionCardOuter-sc-niucah-0'));
 
-  const rows = [
-    ['Cards'], // Header row
-  ];
-
-  cards.forEach((card) => {
+  const rows = cards.map(card => {
     const imageContainer = card.querySelector('[data-testid="ImageContainer"]');
-    const image = document.createElement('img');
-    image.src = imageContainer ? imageContainer.style.backgroundImage.replace(/url\("(.*?)"\)/, '$1') : '';
+    const heading = card.querySelector('h2[data-ref="heading"]');
+    const description = card.querySelector('p');
+    const link = card.querySelector('a[data-ref="link"]');
 
-    const titleElement = card.querySelector('h2[data-ref="heading"]');
-    const title = titleElement ? document.createElement('strong') : null;
-    if (title) {
-      title.textContent = titleElement.textContent;
-    }
+    const image = imageContainer ? imageContainer.cloneNode(true) : document.createTextNode('');
+    const title = heading ? heading.textContent : '';
+    const descriptionText = description ? document.createTextNode(description.textContent) : '';
+    const linkElement = link ? link.cloneNode(true) : '';
 
-    const descriptionElement = card.querySelector('.Content-sc-mh9bui-0 p');
-    const description = descriptionElement ? document.createTextNode(descriptionElement.textContent) : null;
+    const textContent = [
+      title && (() => {
+        const strong = document.createElement('strong');
+        strong.textContent = title;
+        return strong;
+      })(),
+      descriptionText,
+      linkElement
+    ].filter(Boolean);
 
-    const linkElement = card.querySelector('a[data-ref="link"]');
-    const link = linkElement ? document.createElement('a') : null;
-    if (link) {
-      link.href = linkElement.href;
-      link.textContent = linkElement.textContent;
-    }
-
-    const contentCell = document.createElement('div');
-    if (title) contentCell.appendChild(title);
-    if (description) contentCell.appendChild(document.createElement('br')); // Line break between title and description
-    if (description) contentCell.appendChild(description);
-    if (link) {
-      contentCell.appendChild(document.createElement('br')); // Line break before link
-      contentCell.appendChild(link);
-    }
-
-    rows.push([image, contentCell]);
+    return [image, textContent];
   });
 
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+  const table = WebImporter.DOMUtils.createTable([
+    ['Cards'], // Header row
+    ...rows   // Content rows
+  ], document);
+
   element.replaceWith(table);
 }

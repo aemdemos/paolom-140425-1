@@ -1,59 +1,54 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract heading
-  const headingElement = element.querySelector('[data-ref="heading"] span');
-  const heading = headingElement ? headingElement.textContent.trim() : '';
+  const headerRow = ['Hero'];
 
-  // Extract content (subheading, list items, paragraph)
-  const contentElement = element.querySelector('.Content-sc-mh9bui-0');
-  let content = '';
-  if (contentElement) {
-    content = contentElement.innerHTML.trim();
+  // Extract the title
+  const titleElement = element.querySelector('[data-ref="heading"]');
+  const title = titleElement ? titleElement.textContent.trim() : '';
+
+  // Extract the content list
+  const contentList = element.querySelector('.Content-sc-mh9bui-0');
+  const contentItems = Array.from(contentList?.querySelectorAll('li') || []).map((li) => {
+    return li.textContent.trim();
+  });
+
+  // Extract the paragraph content
+  const paragraphElement = contentList?.querySelector('p');
+  const paragraph = paragraphElement ? paragraphElement.textContent.trim() : '';
+
+  // Combine extracted elements into a structured cell
+  const secondRowContent = document.createElement('div');
+
+  if (title) {
+    const titleNode = document.createElement('h1');
+    titleNode.textContent = title;
+    secondRowContent.appendChild(titleNode);
   }
 
-  // Extract background image
-  const imageContainer = element.querySelector('[data-testid="ImageContainer"]');
-  let backgroundImage = '';
-  if (imageContainer) {
-    backgroundImage = imageContainer.style.backgroundImage.replace(/url\("(.*?)"\)/, '$1');
+  if (contentItems.length > 0) {
+    const listNode = document.createElement('ul');
+    contentItems.forEach((item) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = item;
+      listNode.appendChild(listItem);
+    });
+    secondRowContent.appendChild(listNode);
   }
 
-  // Prepare cells for the block table
+  if (paragraph) {
+    const paragraphNode = document.createElement('p');
+    paragraphNode.textContent = paragraph;
+    secondRowContent.appendChild(paragraphNode);
+  }
+
+  // Define the table structure
   const cells = [
-    ['Hero'],
-    [
-      document.createElement('div'), // Temporary div
-    ],
+    headerRow,
+    [secondRowContent],
   ];
 
-  // Add heading
-  const headingDiv = document.createElement('div');
-  if (heading) {
-    const headingStyled = document.createElement('h1');
-    headingStyled.textContent = heading;
-    headingDiv.appendChild(headingStyled);
-  }
-
-  // Add content
-  if (content) {
-    const contentDiv = document.createElement('div');
-    contentDiv.innerHTML = content;
-    headingDiv.appendChild(contentDiv);
-  }
-
-  // Add background image
-  if (backgroundImage) {
-    const imageElement = document.createElement('img');
-    imageElement.src = backgroundImage;
-    headingDiv.appendChild(imageElement);
-  }
-
-  // Replace placeholder div in cells with the constructed content
-  cells[1][0] = headingDiv;
-
-  // Create block table
   const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace the original element with the new block
+  // Replace the original element
   element.replaceWith(block);
 }

@@ -1,31 +1,28 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper function to parse tables
-  const parseTable = (table, captionText) => {
-    const rows = Array.from(table.querySelectorAll('tr'));
-    const parsedRows = rows.map((row, rowIndex) => {
-      const cells = Array.from(row.querySelectorAll(rowIndex === 0 ? 'th' : 'td'));
-      return cells.map((cell) => {
-        const link = cell.querySelector('a');
-        return link ? link : cell.textContent.trim();
+  const headerRow = ['Table (striped, bordered)'];
+
+  // Extract all tables and their data
+  const tables = element.querySelectorAll('table');
+  const tableBlocks = Array.from(tables).map((table) => {
+    const rows = Array.from(table.rows).map((row) => {
+      return Array.from(row.cells).map((cell) => {
+        return cell.innerHTML.trim(); // Extract cell content dynamically
       });
-    }).filter(row => row.length > 0); // Remove empty rows
+    });
 
-    return [[captionText], ...parsedRows];
-  };
-
-  // Extract tables with correct captions
-  const tables = Array.from(element.querySelectorAll('table'));
-  const blocks = tables.map((table) => {
-    const caption = table.querySelector('caption');
-    const captionText = caption ? caption.textContent.trim() : 'Unnamed Table';
-    const tableData = parseTable(table, captionText);
-    return WebImporter.DOMUtils.createTable(tableData, document);
+    return rows; // Return rows only, no captions
   });
 
-  // Replace element with new blocks
-  blocks.forEach((block) => {
-    element.parentNode.insertBefore(block, element);
-  });
-  element.parentNode.removeChild(element);
+  // Map into the required format without captions or empty rows
+  const cells = [headerRow, ...tableBlocks.map((rows) => {
+    return [
+      WebImporter.DOMUtils.createTable(rows, document),
+    ];
+  })];
+
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the element
+  element.replaceWith(blockTable);
 }

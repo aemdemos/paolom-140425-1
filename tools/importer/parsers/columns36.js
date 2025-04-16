@@ -2,33 +2,61 @@
 export default function parse(element, { document }) {
   const headerRow = ['Columns'];
 
-  const columnOne = document.createElement('div');
-  const columnOneWrapper = element.querySelector('.SideBySideLayout__ContainerWrapper-sc-nb03j7-1');
-  const columnOneTitle = columnOneWrapper.querySelector('h2')?.textContent || '';
-  const columnOneContent = columnOneWrapper.querySelector('.RichText__StyledRichTextContent-sc-1j7koit-0')?.cloneNode(true) || document.createTextNode('');
-  const columnOneButtonGroup = columnOneWrapper.querySelectorAll('.NelComponents__ButtonGroup-sc-vsly48-10');
+  const gridColumns = [...element.querySelectorAll('[data-ref="gridColumn"]')];
 
-  columnOne.append(columnOneContent);
-  columnOneButtonGroup.forEach(button => {
-    columnOne.append(button.cloneNode(true));
+  const contentCells = gridColumns.map((gridColumn) => {
+    const content = [];
+
+    // Extract heading
+    const heading = gridColumn.querySelector('[data-ref="heading"]');
+    if (heading) {
+      const h2 = document.createElement('h2');
+      h2.textContent = heading.textContent;
+      content.push(h2);
+    }
+
+    // Extract paragraph text
+    const richText = gridColumn.querySelector('[data-component="RichText"]');
+    if (richText) {
+      const paragraphs = [...richText.querySelectorAll('p')];
+      paragraphs.forEach((paragraph) => {
+        content.push(paragraph.cloneNode(true));
+      });
+    }
+
+    // Extract links
+    const links = [...gridColumn.querySelectorAll('[data-ref="link"]')];
+    links.forEach((link) => {
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.textContent;
+      content.push(anchor);
+    });
+
+    // Handle popular searches list if present
+    const list = gridColumn.querySelector('[data-ref="list"]');
+    if (list) {
+      const items = [...list.querySelectorAll('li')];
+      const ul = document.createElement('ul');
+      items.forEach((item) => {
+        const li = document.createElement('li');
+        const anchor = item.querySelector('a');
+        if (anchor) {
+          const linkElement = document.createElement('a');
+          linkElement.href = anchor.href;
+          linkElement.textContent = anchor.textContent;
+          li.appendChild(linkElement);
+        }
+        ul.appendChild(li);
+      });
+      content.push(ul);
+    }
+
+    return content;
   });
 
-  const columnTwo = document.createElement('div');
-  const columnTwoWrapper = element.querySelectorAll('.SideBySideLayout__ContainerWrapper-sc-nb03j7-1')[1];
-  const columnTwoTitle = columnTwoWrapper?.querySelector('h2')?.textContent || '';
-  const columnTwoContent = columnTwoWrapper?.querySelector('.RichText__StyledRichTextContent-sc-1j7koit-0')?.cloneNode(true) || document.createTextNode('');
-  const columnTwoList = columnTwoWrapper?.querySelector('.NelComponents__List-sc-vsly48-35')?.cloneNode(true) || document.createElement('ul');
+  const rows = [headerRow, contentCells];
 
-  columnTwo.append(columnTwoContent);
-  columnTwo.append(columnTwoList);
-
-  const cells = [
-    headerRow,
-    [columnOneTitle, columnTwoTitle],
-    [columnOne, columnTwo],
-  ];
-
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  element.replaceWith(block);
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

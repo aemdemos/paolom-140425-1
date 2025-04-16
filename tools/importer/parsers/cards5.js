@@ -1,36 +1,39 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const cells = [['Cards']];
+  // Extract cards from the element dynamically
+  const cardElements = Array.from(element.querySelectorAll('.card'));
+  
+  // Handle edge cases if no cards are present
+  if (!cardElements.length) {
+    console.error('No cards found in the element.');
+    return;
+  }
 
-  // Extract rows (actual cards) dynamically from the element
-  const rows = element.querySelectorAll('div.card');
+  const rows = [];
 
-  rows.forEach((row) => {
-    // Extract image dynamically
-    const image = row.querySelector('img');
-    const imageElement = image ? document.createElement('img') : null;
-    if (imageElement) imageElement.src = image.src;
+  // Add the header row, as specified exactly in the example
+  rows.push(['Cards']);
 
-    // Extract title dynamically
-    const title = row.querySelector('h2');
-    const titleElement = title ? document.createElement('strong') : null;
-    if (titleElement) titleElement.textContent = title.textContent;
+  cardElements.forEach((card) => {
+    const image = card.querySelector('img');
+    const title = card.querySelector('h2');
+    const description = card.querySelector('p');
 
-    // Extract description dynamically
-    const description = row.querySelector('p');
-    const descriptionElement = description ? document.createElement('span') : null;
-    if (descriptionElement) descriptionElement.textContent = description.textContent;
+    // Handle missing data dynamically
+    const imageElement = image ? image.cloneNode(true) : null;
+    const titleText = title ? title.textContent.trim() : '';
+    const descriptionText = description ? description.textContent.trim() : '';
 
-    // Combine title and description into a single cell, ensuring proper handling of missing data
-    const cellContent = [titleElement, descriptionElement].filter(Boolean);
-
-    // Add new row to the table
-    cells.push([imageElement, cellContent]);
+    // Add card data to the rows
+    rows.push([
+      [imageElement], // Image or icon
+      [document.createElement('strong').textContent = titleText, descriptionText] // Title and description
+    ]);
   });
 
-  // Create the table using the extracted cells
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the table using WebImporter.DOMUtils.createTable
+  const block = WebImporter.DOMUtils.createTable(rows, document);
 
-  // Replace the original element with the new table
-  element.replaceWith(table);
+  // Replace the original element
+  element.replaceWith(block);
 }
