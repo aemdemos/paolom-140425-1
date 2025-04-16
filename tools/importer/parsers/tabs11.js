@@ -1,20 +1,31 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
+  // Extract the header row for the block
   const headerRow = ['Tabs'];
-  const rows = [];
 
-  // Collecting tab labels and content
-  const sections = element.querySelectorAll('h2');
+  // Extract tabs dynamically from the element
+  const tabs = [];
+
+  const sections = element.querySelectorAll('h2'); // Extract sections representing tab labels
   sections.forEach((section) => {
-    const label = section.textContent.trim();
-    const content = section.nextElementSibling.cloneNode(true);
-    rows.push([label, content]);
+    const tabLabel = section.textContent.trim();
+    let tabContent = [];
+
+    // Gather all sibling nodes until the next section
+    let currentNode = section.nextElementSibling;
+    while (currentNode && currentNode.tagName !== 'H2') {
+      tabContent.push(currentNode.cloneNode(true));
+      currentNode = currentNode.nextElementSibling;
+    }
+
+    if (tabLabel && tabContent.length > 0) {
+      tabs.push([tabLabel, tabContent]);
+    }
   });
 
-  // Creating the table
-  const cells = [headerRow, ...rows];
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the table structure dynamically
+  const table = WebImporter.DOMUtils.createTable([headerRow, ...tabs], document);
 
-  // Replacing the original element
-  element.replaceWith(blockTable);
+  // Replace the original element with the new table
+  element.replaceWith(table);
 }

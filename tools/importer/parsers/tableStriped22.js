@@ -1,35 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Define the exact header row for the block table
-  const blockHeaderRow = ['Table (striped)'];
+  // Define the header row with exact text from the example
+  const headerRow = ['Table (striped)'];
 
-  const tableData = [];
+  const rows = [];
 
-  const rows = element.querySelectorAll('tr');
+  const tableElement = element.querySelector('table');
+  if (tableElement) {
+    const tableRows = Array.from(tableElement.querySelectorAll('tr'));
 
-  rows.forEach((row, index) => {
-    const cells = row.querySelectorAll(index === 0 ? 'th' : 'td');
-    const rowData = [];
-
-    cells.forEach((cell) => {
-      const content = cell.textContent.trim();
-      if (content) {
-        rowData.push(content);
-      }
+    tableRows.forEach((row, index) => {
+      const cells = Array.from(row.children).map((cell) => {
+        return cell.textContent.trim();
+      });
+      rows.push(cells);
     });
+  }
 
-    // Add rows to the table data, ensuring headers are included
-    if (rowData.length > 0) {
-      tableData.push(rowData);
-    }
-  });
+  // Ensure column headers are extracted and placed correctly
+  const columnHeaders = rows[0]; // Extract first row as column headers
 
-  // Ensure the final table structure adheres to the example format
-  const finalTableStructure = [blockHeaderRow, ...tableData];
+  const cells = [
+    headerRow,
+    columnHeaders, // Add column headers as the second row
+    ...rows.slice(1), // Add remaining rows as table body
+  ];
 
-  // Create the block table using WebImporter.DOMUtils.createTable()
-  const blockTable = WebImporter.DOMUtils.createTable(finalTableStructure, document);
+  // Create the block table
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace the original element with the new block table
-  element.replaceWith(blockTable);
+  // Replace the original element with the new block
+  element.replaceWith(block);
 }

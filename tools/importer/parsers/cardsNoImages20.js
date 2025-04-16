@@ -1,45 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const cells = [];
+  const headerRow = ['Cards (no images)'];
+  const rows = [];
 
-  // Fixing the header row with <strong> element
-  const headerElement = document.createElement('strong');
-  headerElement.textContent = 'Cards (no images)';
-  cells.push([headerElement]);
+  // Iterate through content sections to dynamically extract data
+  const sections = element.querySelectorAll('article > h2, article > div.Content-sc-mh9bui-0, article > div.RichText__StyledRichTextContent-sc-1j7koit-0, article > div.LinkGroup-sc-xemnca-0 a');
 
-  // Extract cards based on heading (h2) and description (p)
-  const cards = element.querySelectorAll('h2, div[data-component="RichText"]');
-
-  cards.forEach(card => {
-    const headingText = card.querySelector('h2')?.textContent.trim();
-    const paragraphElements = Array.from(card.querySelectorAll('p')).map(p => {
-      const paragraphClone = document.createElement('p');
-      paragraphClone.textContent = p.textContent.trim();
-      return paragraphClone;
-    });
-    const linkElements = Array.from(card.querySelectorAll('a')).map(link => {
-      const linkClone = document.createElement('a');
-      linkClone.href = link.href;
-      linkClone.textContent = link.textContent.trim();
-      return linkClone;
-    });
-
+  sections.forEach((section) => {
     const content = [];
-    if (headingText) {
+
+    // Extract heading if present
+    const heading = section.tagName === 'H2' ? section.textContent.trim() : null;
+    if (heading) {
       const headingElement = document.createElement('strong');
-      headingElement.textContent = headingText;
+      headingElement.textContent = heading;
       content.push(headingElement);
     }
 
-    content.push(...paragraphElements);
-    content.push(...linkElements);
+    // Extract description paragraphs
+    const paragraphs = section.tagName === 'DIV' && section.querySelectorAll('p');
+    if (paragraphs && paragraphs.length > 0) {
+      paragraphs.forEach((paragraph) => {
+        const paragraphElement = document.createElement('p');
+        paragraphElement.textContent = paragraph.textContent.trim();
+        content.push(paragraphElement);
+      });
+    }
+
+    // Extract link if present
+    const link = section.tagName === 'A' ? section : null;
+    if (link) {
+      const linkElement = document.createElement('a');
+      linkElement.href = link.href;
+      linkElement.textContent = link.textContent.trim();
+      content.push(linkElement);
+    }
 
     if (content.length > 0) {
-      cells.push([content]);
+      rows.push([content]);
     }
   });
 
-  // Replace the existing element with the newly created table
+  const cells = [headerRow, ...rows];
   const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element with the new block table
   element.replaceWith(blockTable);
 }

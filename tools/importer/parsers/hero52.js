@@ -1,48 +1,39 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    // Extract the headline
-    const headingElement = element.querySelector('[data-ref="heading"]');
-    const heading = headingElement ? headingElement.textContent.trim() : '';
+  // Extract the title
+  const titleElement = element.querySelector('[data-ref="heading"]');
+  const title = titleElement ? titleElement.cloneNode(true) : null; // Clone the original structure
 
-    // Extract subheading
-    const subheadingElement = element.querySelector('.HomepageHeroEdgeToEdge__StyledRichText-sc-rkxeoj-5');
-    const subheading = subheadingElement ? subheadingElement.textContent.trim() : '';
+  // Extract the subheading
+  const subheadingElement = element.querySelector('.HomepageHeroEdgeToEdge__StyledRichText-sc-rkxeoj-5');
+  const subheading = subheadingElement ? subheadingElement.cloneNode(true) : null; // Clone the original structure
 
-    // Extract call-to-action link
-    const linkElement = element.querySelector('[data-ref="link"]');
-    const ctaText = linkElement ? linkElement.textContent.trim() : '';
-    const ctaHref = linkElement ? linkElement.href : '';
+  // Extract the call-to-action
+  const ctaElement = element.querySelector('[data-testid="PrimaryButton"]');
+  let cta = null;
+  if (ctaElement) {
+    const linkText = ctaElement.textContent.trim();
+    const linkHref = ctaElement.getAttribute('href');
+    cta = document.createElement('a');
+    cta.textContent = linkText;
+    cta.setAttribute('href', linkHref);
+  }
 
-    // Create the heading element
-    const headingNode = document.createElement('h1');
-    headingNode.textContent = heading;
+  // Combine all content into a single cell
+  const combinedContent = document.createElement('div');
+  if (title) combinedContent.appendChild(title);
+  if (subheading) combinedContent.appendChild(subheading);
+  if (cta) combinedContent.appendChild(cta);
 
-    // Create the subheading element
-    const subheadingNode = document.createElement('p');
-    subheadingNode.textContent = subheading;
+  // Create the cells for the table
+  const cells = [
+    ['Hero'], // Correct plain text header row
+    [combinedContent] // Single cell containing combined content
+  ];
 
-    // Create the call-to-action element
-    const ctaNode = document.createElement('a');
-    ctaNode.href = ctaHref;
-    ctaNode.textContent = ctaText;
+  // Create the block table using WebImporter.DOMUtils.createTable
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
-    // Combine all content into a single cell
-    const combinedContent = document.createElement('div');
-    combinedContent.appendChild(headingNode);
-    combinedContent.appendChild(subheadingNode);
-    combinedContent.appendChild(ctaNode);
-
-    // Build the table cells
-    const headerRow = [document.createElement('strong')];
-    headerRow[0].textContent = 'Hero';
-    const cells = [
-        [headerRow[0]],
-        [combinedContent],
-    ];
-
-    // Create the block table
-    const block = WebImporter.DOMUtils.createTable(cells, document);
-
-    // Replace the original element with the block table
-    element.replaceWith(block);
+  // Replace the original element with the new block
+  element.replaceWith(block);
 }

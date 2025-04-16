@@ -1,42 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Columns'];
+  const columnsHeader = ['Columns'];
 
-  const cells = [];
-  // Add header row
-  cells.push(headerRow);
+  // Map through the columns and extract all content into a single cell per column
+  const columnsContent = Array.from(element.querySelectorAll('[data-ref="gridColumn"]')).map((col) => {
+    // Extract heading text
+    const heading = col.querySelector('[data-component="Heading3"]')?.textContent.trim() || '';
 
-  const columns = Array.from(element.querySelectorAll('[data-ref="gridColumn"]'));
+    // Extract paragraph text
+    const paragraph = col.querySelector('[data-component="RichText"] > p')?.textContent.trim() || '';
 
-  const contentRows = columns.map((column) => {
-    const titleElement = column.querySelector('[data-ref="heading"]');
-    const title = titleElement ? titleElement.textContent.trim() : '';
-
-    const descriptionElement = column.querySelector('[data-component="RichText"] p');
-    const description = descriptionElement ? descriptionElement.textContent.trim() : '';
-
-    const linkElement = column.querySelector('[data-ref="link"]');
-    const link = document.createElement('a');
-    if (linkElement) {
+    // Extract link
+    const linkElement = col.querySelector('[data-ref="link"]');
+    const link = linkElement ? document.createElement('a') : null;
+    if (link) {
       link.href = linkElement.href;
       link.textContent = linkElement.textContent.trim();
     }
 
-    // Group all content into a single cell for each column
-    const contentCell = [
-      document.createElement('hr'),
-      title,
-      description,
-      link,
-    ];
+    // Create an <hr> element
+    const hr = document.createElement('hr');
 
-    return [contentCell];
+    // Combine all content into a single cell for the column
+    const cellContent = [
+      hr,
+      document.createTextNode(heading),
+      document.createElement('br'),
+      document.createTextNode(paragraph),
+      document.createElement('br'),
+      link,
+    ].filter(Boolean);
+
+    // Wrap all elements inside a div for the cell
+    const div = document.createElement('div');
+    div.append(...cellContent);
+
+    return div;
   });
 
-  // Ensure each row is correctly formatted as an array
-  cells.push(...contentRows);
+  // Create the table structure with header and content rows
+  const cells = [columnsHeader, columnsContent];
 
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // Generate the table block
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  element.replaceWith(table);
+  // Replace original element with the new table block
+  element.replaceWith(block);
 }

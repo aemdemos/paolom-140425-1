@@ -2,42 +2,60 @@
 export default function parse(element, { document }) {
   const headerRow = ['Cards'];
 
-  const cardsData = Array.from(element.querySelectorAll('.NelComponents__Col-sc-vsly48-38')).map((card) => {
-    const title = card.querySelector('h2')?.textContent.trim();
-    const description = card.querySelector('div[data-component="RichText"] p')?.textContent.trim();
-    const listItems = Array.from(card.querySelectorAll('ul > li')).map((li) => li.textContent.trim()).join('<br>');
-    const button = card.querySelector('a[data-testid="PrimaryButton"]')?.textContent.trim();
+  const rows = Array.from(element.querySelectorAll('.SideBySideLayout__ContainerWrapper-sc-nb03j7-1'));
 
-    const content = document.createElement('div');
-    if (title) {
-      const heading = document.createElement('strong');
-      heading.textContent = title;
-      content.appendChild(heading);
+  const cards = rows.map((row) => {
+    // Extract image element
+    const imageElement = row.querySelector('svg, img');
+    const image = imageElement ? imageElement.cloneNode(true) : ''; // Clone the image or SVG element
+
+    // Extract title element
+    const titleElement = row.querySelector('h2');
+    const title = titleElement ? document.createElement('strong') : '';
+    if (titleElement && title) {
+      title.textContent = titleElement.textContent;
     }
 
-    if (description) {
-      const descElement = document.createElement('p');
-      descElement.textContent = description;
-      content.appendChild(descElement);
+    // Extract description element
+    const descriptionElement = row.querySelector('p');
+    const description = descriptionElement ? document.createElement('p') : '';
+    if (descriptionElement && description) {
+      description.textContent = descriptionElement.textContent;
     }
 
-    if (listItems) {
-      const listElement = document.createElement('div');
-      listElement.innerHTML = listItems;
-      content.appendChild(listElement);
+    // Extract list items and structure them within a <ul>
+    const listElements = row.querySelectorAll('ul li');
+    const listItems = Array.from(listElements).map((li) => {
+      const item = document.createElement('li');
+      item.textContent = li.textContent.trim();
+      return item;
+    });
+    const list = listItems.length > 0 ? document.createElement('ul') : '';
+    if (listItems.length > 0 && list) {
+      list.append(...listItems);
     }
 
-    if (button) {
-      const buttonElement = document.createElement('a');
-      buttonElement.textContent = button;
-      content.appendChild(buttonElement);
-    }
+    // Extract button element
+    const buttonElement = row.querySelector('a[data-testid="PrimaryButton"]');
+    const button = buttonElement ? buttonElement.cloneNode(true) : ''; // Clone the button element
 
-    return [content];
+    // Combine content into a single cell
+    const content = [];
+    if (title) content.push(title);
+    if (description) content.push(description);
+    if (list) content.push(list);
+    if (button) content.push(button);
+
+    // Return row as [image, content]
+    return [image, content];
   });
 
-  const tableData = [headerRow, ...cardsData];
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+  // Combine header row with card rows
+  const tableData = [headerRow, ...cards];
 
-  element.replaceWith(blockTable);
+  // Create table using WebImporter.DOMUtils.createTable
+  const block = WebImporter.DOMUtils.createTable(tableData, document);
+
+  // Replace original element with the new structure
+  element.replaceWith(block);
 }

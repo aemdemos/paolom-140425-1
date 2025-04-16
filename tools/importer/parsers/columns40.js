@@ -1,54 +1,42 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Columns'];
+  // Helper function to extract text content of elements
+  const getText = (el) => el?.textContent.trim() || '';
 
-  // Extracting content for the first column dynamically
-  const firstColumnContent = document.createElement('div');
-  const columnBlockTitle = element.querySelector('h1');
-  if (columnBlockTitle) {
-    firstColumnContent.appendChild(document.createTextNode(columnBlockTitle.textContent));
-  }
+  // Extract main heading
+  const mainHeading = element.querySelector('h1[data-ref="heading"]');
+  const mainHeadingText = getText(mainHeading);
 
-  const list = document.createElement('ul');
-  ['One', 'Two', 'Three'].forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    list.appendChild(li);
+  // Extract sections under the main heading
+  const sectionHeaders = element.querySelectorAll('article > h2[data-ref="heading"]');
+
+  const sections = Array.from(sectionHeaders).map((header) => {
+    const title = getText(header);
+    const contentContainer = header.nextElementSibling;
+
+    // Extract paragraph and list items dynamically
+    const contentElements = Array.from(contentContainer.querySelectorAll('p, ul, li')).map((el) => {
+      const clonedElement = el.cloneNode(true); // Clone element to preserve structure
+      return clonedElement;
+    });
+
+    return [title, contentElements];
   });
-  firstColumnContent.appendChild(list);
 
-  const liveLink = document.createElement('a');
-  liveLink.href = 'https://word-edit.officeapps.live.com/';
-  liveLink.textContent = 'Live';
-  firstColumnContent.appendChild(liveLink);
+  // Create table rows dynamically
+  const headerRow = [document.createElement('strong')];
+  headerRow[0].textContent = 'Columns';
 
-  // Extracting content for the second column dynamically
-  const secondColumnContent = document.createElement('div');
+  const contentRows = sections.map(([title, content]) => {
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = title; // Create title dynamically as an HTML element
 
-  const imageElement = element.querySelector('img[src*="sidekick-library--sta-boilerplate"]');
-  if (imageElement) {
-    const imageClone = document.createElement('img');
-    imageClone.src = imageElement.src;
-    imageClone.alt = imageElement.alt || 'Image';
-    secondColumnContent.appendChild(imageClone);
-  }
+    return [titleElement, content];
+  });
 
-  const previewTextDiv = document.createElement('div');
-  const previewText = document.createTextNode('Or you can just view the preview');
-  previewTextDiv.appendChild(previewText);
+  const cells = [headerRow, ...contentRows];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
 
-  const previewLink = document.createElement('a');
-  previewLink.href = 'https://word-edit.officeapps.live.com/';
-  previewLink.textContent = 'Preview';
-  previewTextDiv.appendChild(previewLink);
-  secondColumnContent.appendChild(previewTextDiv);
-
-  const cells = [
-    headerRow,
-    [firstColumnContent, secondColumnContent]
-  ];
-
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
-
-  element.replaceWith(blockTable);
+  // Replace the original element with the new table
+  element.replaceWith(table);
 }

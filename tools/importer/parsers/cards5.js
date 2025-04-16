@@ -1,36 +1,37 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const cells = [['Cards']];
+  const rows = [];
 
-  // Extract rows (actual cards) dynamically from the element
-  const rows = element.querySelectorAll('div.card');
+  // Add header row
+  rows.push(['Cards']);
 
-  rows.forEach((row) => {
-    // Extract image dynamically
-    const image = row.querySelector('img');
-    const imageElement = image ? document.createElement('img') : null;
-    if (imageElement) imageElement.src = image.src;
+  // Extract card data
+  const cards = element.querySelectorAll('.nel-Link-3'); // Modified selector to match the given structure
 
-    // Extract title dynamically
-    const title = row.querySelector('h2');
-    const titleElement = title ? document.createElement('strong') : null;
-    if (titleElement) titleElement.textContent = title.textContent;
+  cards.forEach(card => {
+    const img = card.querySelector('svg'); // Extracting the SVG element as the image
+    const titleElement = card.querySelector('span.nel-Link-5');
+    const descriptionElement = card.querySelector('path');
 
-    // Extract description dynamically
-    const description = row.querySelector('p');
-    const descriptionElement = description ? document.createElement('span') : null;
-    if (descriptionElement) descriptionElement.textContent = description.textContent;
+    const image = img ? img.cloneNode(true) : document.createElement('div');
+    const textContent = document.createElement('div');
 
-    // Combine title and description into a single cell, ensuring proper handling of missing data
-    const cellContent = [titleElement, descriptionElement].filter(Boolean);
+    if (titleElement && titleElement.textContent.trim()) {
+      const heading = document.createElement('h2');
+      heading.textContent = titleElement.textContent.trim();
+      textContent.appendChild(heading);
+    }
 
-    // Add new row to the table
-    cells.push([imageElement, cellContent]);
+    if (descriptionElement && descriptionElement.textContent.trim()) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = descriptionElement.textContent.trim();
+      textContent.appendChild(paragraph);
+    }
+
+    rows.push([image, textContent]);
   });
 
-  // Create the table using the extracted cells
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the new table
-  element.replaceWith(table);
+  // Create table and replace element
+  const blockTable = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(blockTable);
 }

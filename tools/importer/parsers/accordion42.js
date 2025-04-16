@@ -1,42 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Define the header row with the block name
-  const headerRow = ['Accordion'];
-
   const rows = [];
 
-  // Select all accordion sections within the element
-  const sections = element.querySelectorAll('.VerticalRhythm-sc-16b971y-0.kgLxmR[data-component="GuideSection"]');
+  // Add the header row for Accordion block
+  rows.push(['Accordion']);
 
-  // Iterate through each section to extract title and content
-  sections.forEach(section => {
-    const title = section.querySelector('h2')?.textContent.trim();
+  // Extract accordion items
+  const sections = element.querySelectorAll('[data-component="GuideSection"]');
 
-    // Combine all relevant content elements (paragraphs, lists, headings, links)
-    const contentElements = Array.from(section.querySelectorAll('p, ul, h3, a')).map(el => {
-      if (el.tagName === 'A') {
-        const link = document.createElement('a');
-        link.href = el.href;
-        link.textContent = el.textContent.trim();
-        return link;
-      }
-      return el.cloneNode(true);
-    });
+  sections.forEach((section) => {
+    // Extract title of the section
+    const titleElement = section.querySelector('[data-ref="heading"]');
+    const contentElement = section.querySelector('.RichText__StyledRichTextContent-sc-1j7koit-0');
 
-    // Create a content cell to store all extracted elements
-    const contentCell = document.createElement('div');
-    contentElements.forEach(el => contentCell.appendChild(el));
+    if (titleElement && contentElement) {
+      const title = titleElement.textContent.trim();
 
-    // Add the title and content cell as a row in the table
-    rows.push([title, contentCell]);
+      // Normalize content: Remove unnecessary duplicates and normalize <h3> tags
+      const contentClone = contentElement.cloneNode(true);
+      const headers = contentClone.querySelectorAll('h3');
+      headers.forEach(header => {
+        const plainText = document.createTextNode(header.textContent);
+        header.replaceWith(plainText);
+      });
+
+      // Remove duplicate links
+      const links = contentClone.querySelectorAll('a');
+      const seenLinks = new Set();
+      links.forEach(link => {
+        if (seenLinks.has(link.href)) {
+          link.remove();
+        } else {
+          seenLinks.add(link.href);
+        }
+      });
+
+      rows.push([title, contentClone]);
+    }
   });
 
-  // Combine header row and all rows into the final cells array
-  const cells = [headerRow, ...rows];
+  // Create the table block
+  const table = WebImporter.DOMUtils.createTable(rows, document);
 
-  // Create the structured table block using WebImporter.DOMUtils.createTable
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+  // Replace the original element with the new table
+  element.replaceWith(table);
 
-  // Replace the original element with the newly created block
-  element.replaceWith(block);
+  return table;
 }

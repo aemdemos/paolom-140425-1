@@ -1,50 +1,44 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    const tables = element.querySelectorAll('table');
-    const blocks = [];
+  const blocks = [];
 
-    tables.forEach((table) => {
-        const rows = [];
+  // Extract and structure the content dynamically
+  const title = element.querySelector('h1')?.textContent.trim();
+  if (title) {
+    const headerRow = ['Title'];
+    const contentRow = [title];
+    const table = WebImporter.DOMUtils.createTable([headerRow, contentRow], document);
+    blocks.push(table);
+  }
 
-        // Add the header row exactly as specified
-        const headerRow = ['Table (striped, bordered)'];
-        rows.push(headerRow);
+  const sections = element.querySelectorAll('h3');
+  sections.forEach((section) => {
+    const sectionTitle = section.textContent.trim();
+    const nextTable = section.nextElementSibling?.querySelector('table');
 
-        // Extract caption and add it as a separate row
-        const caption = table.querySelector('caption');
-        if (caption) {
-            rows.push([caption.textContent.trim()]);
-        }
+    const headerRow = ['Table (striped, bordered)']; // Ensure this matches the example header exactly
+    const contentRows = [];
 
-        // Extract table content
-        const tbody = table.querySelector('tbody');
-        if (tbody) {
-            tbody.querySelectorAll('tr').forEach((row) => {
-                const cells = Array.from(row.children).map((cell) => {
-                    if (cell.tagName.toLowerCase() === 'td' || cell.tagName.toLowerCase() === 'th') {
-                        const links = cell.querySelectorAll('a');
-                        if (links.length > 0) {
-                            return [...links].map((link) => {
-                                const anchor = document.createElement('a');
-                                anchor.href = link.href;
-                                anchor.textContent = link.textContent.trim();
-                                return anchor;
-                            });
-                        }
-                        return cell.textContent.trim();
-                    }
-                    return null;
-                });
-                rows.push(cells);
-            });
-        }
+    if (nextTable) {
+      const rows = nextTable.querySelectorAll('tr');
+      rows.forEach((row) => {
+        const cells = Array.from(row.children).map((cell) => {
+          if (cell.querySelector('a')) {
+            return cell.querySelector('a');
+          }
+          return cell.textContent.trim();
+        });
+        contentRows.push(cells);
+      });
+    }
 
-        const block = WebImporter.DOMUtils.createTable(rows, document);
-        blocks.push(block);
-    });
+    const table = WebImporter.DOMUtils.createTable([headerRow, ...contentRows], document);
+    blocks.push(table);
 
-    // Replace the element with the blocks
-    const wrapper = document.createElement('div');
-    blocks.forEach((block) => wrapper.appendChild(block));
-    element.replaceWith(wrapper);
+    const hr = document.createElement('hr');
+    blocks.push(hr);
+  });
+
+  // Replace the original element
+  element.replaceChildren(...blocks);
 }

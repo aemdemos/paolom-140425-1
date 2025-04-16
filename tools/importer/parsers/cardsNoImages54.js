@@ -1,25 +1,37 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract the title
-  const title = element.querySelector('[data-ref="heading"]')?.textContent.trim();
+  const headerRow = ['Cards (no images)'];
 
-  // Extract the paragraph under the title
-  const paragraph = element.querySelector('[data-component="RichText"]')?.textContent.trim();
+  const cards = [];
 
-  // Extract the list items
-  const listItems = element.querySelectorAll('[data-ref="list"] li');
-  
-  const cardsData = Array.from(listItems).map((item) => {
-    const content = item.querySelector('.Content-sc-mh9bui-0')?.textContent.trim();
-    return content;
+  // Extract the section title
+  const title = element.querySelector('h2[data-ref="heading"]');
+  if (title) {
+    const strongTitle = document.createElement('strong');
+    strongTitle.textContent = title.textContent;
+    cards.push([strongTitle]);
+  }
+
+  // Extract the description paragraph
+  const description = element.querySelector('div[data-component="RichText"] p');
+  if (description) {
+    cards.push([description.cloneNode(true)]);
+  }
+
+  // Extract list items and their descriptions
+  const lists = element.querySelectorAll('ul[data-ref="list"]');
+  lists.forEach((list) => {
+    const items = list.querySelectorAll('li');
+    items.forEach((item) => {
+      const content = item.querySelector('div.vertical-rhythm--richText');
+      if (content) {
+        cards.push([content.cloneNode(true)]);
+      }
+    });
   });
 
-  // Prepare the table cells
-  const cells = [
-    ["Cards (no images)"],
-    ...cardsData.map(card => card ? [card] : [])
-  ];
-
+  // Create table for the block
+  const cells = [headerRow, ...cards];
   const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
   // Replace the original element with the new block table

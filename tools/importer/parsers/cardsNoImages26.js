@@ -1,49 +1,54 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Cards (no images)'];
+  const headerRow = ['Cards (no images)']; // Header row as per example
 
-  // Extract all cards from the given element
+  const rows = [];
+
+  // Extract all card elements dynamically
   const cards = element.querySelectorAll('[data-component="CardContactSimple"]');
 
-  // Map each card to a table row
-  const rows = Array.from(cards).map((card) => {
-    // Extract heading
-    const heading = card.querySelector('[data-ref="heading"]');
-    const title = heading ? heading.textContent.trim() : '';
+  cards.forEach((card) => {
+    // Extract title
+    const titleElement = card.querySelector('[data-ref="heading"]');
+    const title = titleElement ? titleElement.textContent.trim() : '';
 
-    // Extract description
-    const descriptionEl = card.querySelector('[data-testid="CardAvailability"]');
-    const description = descriptionEl ? descriptionEl.textContent.trim() : '';
+    // Extract availability text
+    const availabilityElement = card.querySelector('[data-testid="CardAvailability"]');
+    const availability = availabilityElement ? availabilityElement.innerHTML.trim() : '';
 
-    // Extract call-to-action
-    const actionEl = card.querySelector('[data-testid="CardActionText"]');
-    const action = actionEl ? actionEl.innerHTML.trim() : '';
+    // Extract action text
+    const actionElement = card.querySelector('[data-testid="CardActionText"]');
+    const action = actionElement ? actionElement.innerHTML.trim() : '';
 
-    // Combine content into a single table cell
-    const content = document.createElement('div');
+    // Create the content cell dynamically
+    const contentCell = document.createElement('div');
+
     if (title) {
-      const titleEl = document.createElement('strong');
-      titleEl.textContent = title;
-      content.appendChild(titleEl);
-    }
-    if (description) {
-      const descriptionEl = document.createElement('p');
-      descriptionEl.textContent = description;
-      content.appendChild(descriptionEl);
-    }
-    if (action) {
-      const actionWrapper = document.createElement('div');
-      actionWrapper.innerHTML = action;
-      content.appendChild(actionWrapper);
+      const titleNode = document.createElement('strong');
+      titleNode.textContent = title;
+      contentCell.appendChild(titleNode);
+      contentCell.appendChild(document.createElement('br'));
     }
 
-    return [content];
+    if (availability) {
+      const availabilityNode = document.createElement('p');
+      availabilityNode.innerHTML = availability; // Keeping the HTML structure intact
+      contentCell.appendChild(availabilityNode);
+    }
+
+    if (action) {
+      const actionNode = document.createElement('p');
+      actionNode.innerHTML = action; // Keeping the HTML structure intact
+      contentCell.appendChild(actionNode);
+    }
+
+    rows.push([contentCell]);
   });
 
-  // Create the block table
+  // Create table cells array
   const cells = [headerRow, ...rows];
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace the element with the new block table
-  element.replaceWith(blockTable);
+  // Replace the original element with the new table
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(table);
 }

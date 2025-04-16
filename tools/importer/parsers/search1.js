@@ -1,38 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Search'];
-
-  // Locate the search area
-  const searchForm = element.querySelector('form');
-  if (!searchForm) {
-    console.warn('Search form not found, returning empty table.');
-    const cells = [headerRow, ['No Search Form Available']];
-    const block = WebImporter.DOMUtils.createTable(cells, document);
-    element.replaceWith(block);
-    return;
+  // Try to extract the search form's action attribute dynamically
+  const formElement = element.querySelector('form');
+  let queryIndexURL = '';
+  if (formElement) {
+    queryIndexURL = formElement.getAttribute('action') || 'https://main--helix-block-collection--adobe.hlx.page/block-collection/sample-search-data/query-index.json';
+  } else {
+    queryIndexURL = 'https://main--helix-block-collection--adobe.hlx.page/block-collection/sample-search-data/query-index.json';
   }
 
-  const queryUrlElement = searchForm.querySelector('input[name="query"]');
-  const actionUrl = searchForm.getAttribute('action');
+  // Create the header row with the EXACT text required
+  const headerRow = ['Search'];
 
-  // Validate URLs and set a fallback if missing
-  const queryIndexUrl = actionUrl && actionUrl !== '#' ? actionUrl : 'https://main--helix-block-collection--adobe.hlx.page/block-collection/sample-search-data/query-index.json';
+  // Create the content row with the dynamically extracted URL
+  const contentRow = [document.createElement('a')];
+  contentRow[0].href = queryIndexURL;
+  contentRow[0].textContent = queryIndexURL;
+  contentRow[0].setAttribute('target', '_blank');
 
-  // Create content row dynamically
-  const linkElement = document.createElement('a');
-  linkElement.href = queryIndexUrl;
-  linkElement.textContent = queryIndexUrl;
-
-  const contentRow = [linkElement];
-
+  // Construct the table structure
   const cells = [
-    headerRow,
-    contentRow,
+    headerRow, // Header row
+    contentRow // Content row with extracted URL
   ];
 
-  // Create table block
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the block table using WebImporter.DOMUtils
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace the original element with the structured table
-  element.replaceWith(block);
+  // Replace the original element with the new block table
+  element.replaceWith(blockTable);
+
+  return blockTable;
 }

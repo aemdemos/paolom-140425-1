@@ -1,40 +1,38 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const cards = Array.from(element.querySelectorAll('[data-component="CardCTATextLinks"]'));
+    const headerRow = ['Cards'];
 
-  const cells = [
-    ['Cards'],
-  ];
+    const cards = Array.from(element.querySelectorAll('[data-component="CardCTATextLinks"]')).map((card) => {
+        const imageContainer = card.querySelector('[data-testid="ImageContainer"]');
+        const image = document.createElement('div');
+        image.innerHTML = imageContainer.outerHTML;
 
-  cards.forEach((card) => {
-    const imageContainer = card.querySelector('[data-testid="ImageContainer"]');
-    const image = imageContainer ? imageContainer.cloneNode(true) : null;
+        const title = card.querySelector('h2[data-ref="heading"]');
+        const descriptionContainer = card.querySelector('[data-testid="CardContent"]');
+        const descriptionParagraphs = Array.from(descriptionContainer.querySelectorAll('p'));
 
-    const heading = card.querySelector('h2') ? card.querySelector('h2').textContent.trim() : '';
-    const paragraphs = Array.from(card.querySelectorAll('p')).map(p => p.textContent.trim());
-    const link = card.querySelector('a');
-    const linkText = link ? link.textContent.trim() : '';
-    const linkElement = link ? link.cloneNode(true) : null;
+        const linkContainer = card.querySelector('[data-testid="TextLink"]');
+        const linkText = linkContainer.textContent;
+        const linkHref = linkContainer.getAttribute('href');
+        const link = document.createElement('a');
+        link.href = linkHref;
+        link.textContent = linkText;
 
-    const textContent = document.createElement('div');
-    if (heading) {
-      const headingElement = document.createElement('h2');
-      headingElement.textContent = heading;
-      textContent.appendChild(headingElement);
-    }
-    paragraphs.forEach((paragraph) => {
-      const paragraphElement = document.createElement('p');
-      paragraphElement.textContent = paragraph;
-      textContent.appendChild(paragraphElement);
+        const textContent = [
+            title,
+            ...descriptionParagraphs,
+            link,
+        ];
+
+        return [image, textContent];
     });
-    if (linkElement) {
-      textContent.appendChild(linkElement);
-    }
 
-    cells.push([image, textContent]);
-  });
+    const tableData = [
+        headerRow,
+        ...cards,
+    ];
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+    const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
 
-  element.replaceWith(blockTable);
+    element.replaceWith(blockTable);
 }
