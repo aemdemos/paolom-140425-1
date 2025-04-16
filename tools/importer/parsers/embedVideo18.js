@@ -1,25 +1,37 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract relevant content from the provided HTML element
-  const videoImage = element.querySelector('div img'); // Get the video poster image
-  const videoLink = element.querySelector('a[href]'); // Extract video URL
+  const urlElement = element.querySelector('a[data-ref="link"]');
+  const imageElement = element.querySelector('img');
 
-  // Ensure we handle cases where elements might not exist
-  const imageElement = videoImage ? videoImage.cloneNode(true) : null; // Clone the image element if available
-  const videoURL = videoLink ? videoLink.href : ''; // Get the href attribute of the link if present
+  // Ensure the header row matches the example exactly
+  const headerRow = ['Embed'];
 
-  // Construct the table structure dynamically
-  const cells = [
-    ['Embed'], // First row is the header row matching the block name
-    [
-      imageElement, // Add video image (if exists) to the cell
-      videoURL // Add video URL below the image
-    ].filter(Boolean) // Ensure no null values are added to the table rows
+  // Construct the content row dynamically
+  const contentRow = [];
+
+  // Add image if it exists
+  if (imageElement) {
+    contentRow.push(imageElement);
+  }
+
+  // Add URL if it exists
+  if (urlElement) {
+    const urlLink = document.createElement('a');
+    urlLink.href = urlElement.href;
+    urlLink.textContent = urlElement.href;
+    contentRow.push(urlLink);
+  } else {
+    contentRow.push('No valid URL found'); // Handle edge case for missing URL
+  }
+
+  // Create the table with dynamically extracted content
+  const tableCells = [
+    headerRow,
+    [contentRow],
   ];
 
-  // Create the block table using WebImporter helper
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  const blockTable = WebImporter.DOMUtils.createTable(tableCells, document);
 
-  // Replace the original element with the new structured block table
+  // Replace the original element with the structured block table
   element.replaceWith(blockTable);
 }

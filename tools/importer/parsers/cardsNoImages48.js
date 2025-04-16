@@ -2,33 +2,34 @@
 export default function parse(element, { document }) {
   const headerRow = ['Cards (no images)'];
 
-  const cards = [];
+  // Extract content from the `h2` element
+  const heading = element.querySelector('[data-component="Heading2"]');
 
-  // Extract title and description
-  const heading = element.querySelector('[data-ref="heading"]');
-  const headingText = heading ? heading.textContent.trim() : '';
-
+  // Extract description paragraph
   const description = element.querySelector('[data-component="RichText"] p');
-  const descriptionText = description ? description.textContent.trim() : '';
-
-  if (headingText || descriptionText) {
-    cards.push([`${headingText}\n${descriptionText}`]);
-  }
 
   // Extract list items
-  const listItems = element.querySelectorAll('ul[data-ref="list"] li');
+  const listItems = element.querySelectorAll('[data-ref="list"] li');
 
-  listItems.forEach((item) => {
-    const text = item.querySelector('p');
-    const textContent = text ? text.textContent.trim() : '';
-    if (textContent) {
-      cards.push([textContent]);
-    }
+  // Create rows for each list item
+  const rows = Array.from(listItems).map((item) => {
+    const listDescription = item.querySelector('p');
+    return [
+      listDescription ? listDescription.textContent.trim() : '',
+    ];
   });
 
-  const tableData = [headerRow, ...cards];
+  // Combine all rows into a table array
+  const cells = [
+    headerRow,
+    [heading ? heading.textContent.trim() : ''],
+    [description ? description.textContent.trim() : ''],
+    ...rows,
+  ];
 
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+  // Create the block table
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  element.replaceWith(blockTable);
+  // Replace the original element
+  element.replaceWith(block);
 }

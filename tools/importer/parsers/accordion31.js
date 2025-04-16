@@ -1,36 +1,33 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    const headerRow = ['Accordion'];
+  const headerRow = ['Accordion'];
 
-    const rows = [];
-    const accordionItems = element.querySelectorAll('.nel-Accordion-501');
+  // Extract accordion items
+  const accordionItems = element.querySelectorAll('[data-ref="accordion"]');
+  
+  const rows = Array.from(accordionItems).map((item) => {
+    const titleButton = item.querySelector('[data-ref="accordionHeader"]');
+    const title = titleButton ? titleButton.textContent.trim() : '';
 
-    accordionItems.forEach((item) => {
-        const titleElement = item.querySelector('[data-ref="accordionHeading"]');
-        const title = titleElement ? titleElement.textContent.trim() : 'Untitled';
+    const contentWrapper = item.querySelector('[data-testid="AccordionContent"]');
+    const contentCell = document.createElement('div');
 
-        const contentElement = item.querySelector('[data-testid="AccordionContent"]');
-        const contentParagraphs = contentElement ? Array.from(contentElement.querySelectorAll('p')) : [];
+    if (contentWrapper) {
+      const links = contentWrapper.querySelectorAll('a');
+      links.forEach((link) => {
+        const linkElement = document.createElement('div');
+        linkElement.appendChild(link.cloneNode(true));
+        contentCell.appendChild(linkElement);
+      });
+    }
 
-        let content = [];
-        if (contentParagraphs.length > 0) {
-            content = contentParagraphs.map((p) => {
-                const links = Array.from(p.querySelectorAll('a')).map(link => {
-                    const clonedLink = document.createElement('a');
-                    clonedLink.href = link.href;
-                    clonedLink.target = link.target;
-                    clonedLink.textContent = link.textContent;
-                    return clonedLink;
-                });
-                return links.length > 0 ? links : p.textContent.trim();
-            });
-        } else {
-            content = 'No content available';
-        }
+    return [title, contentCell];
+  });
 
-        rows.push([title, content.flat()]); // Flatten arrays of elements/strings for proper table structure
-    });
+  // Create block table
+  const cells = [headerRow, ...rows];
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
-    const blockTable = WebImporter.DOMUtils.createTable([headerRow, ...rows], document);
-    element.replaceWith(blockTable);
+  // Replace the original element with the block table
+  element.replaceWith(blockTable);
 }

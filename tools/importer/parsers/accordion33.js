@@ -1,30 +1,31 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    // Extract accordion title and contents
-    const accordionItems = [];
-    const sections = element.querySelectorAll('div[data-component="GuideSection"]');
+  const headerRow = ['Accordion'];
 
-    sections.forEach((section) => {
-        const titleElement = section.querySelector('h2[data-ref="heading"]');
-        const contentElement = section.querySelector('div[data-component="RichText"]');
+  const rows = [];
 
-        const title = titleElement ? titleElement.textContent.trim() : '';
-        const content = contentElement ? contentElement.cloneNode(true) : document.createTextNode('');
+  // Extracting each accordion section
+  const sections = element.querySelectorAll('[data-component="GuideSection"]');
 
-        if (title && content) {
-            accordionItems.push([title, content]);
-        }
-    });
+  sections.forEach((section) => {
+    const titleElement = section.querySelector('[data-ref="heading"]');
+    const contentElement = section.querySelector('[data-component="RichText"]');
 
-    // Build table data
-    const tableData = [
-        ['Accordion'], // Header row
-        ...accordionItems.map(([title, content]) => [title, content]),
-    ];
+    if (titleElement && contentElement) {
+      const title = titleElement.textContent.trim();
+      const content = contentElement.innerHTML.trim();
 
-    // Create the table
-    const table = WebImporter.DOMUtils.createTable(tableData, document);
+      const contentCell = document.createElement('div');
+      contentCell.innerHTML = content;
 
-    // Replace the original element with the new table
-    element.replaceWith(table);
+      rows.push([title, contentCell]);
+    }
+  });
+
+  // Create the table
+  const cells = [headerRow, ...rows];
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element with the block table
+  element.replaceWith(blockTable);
 }

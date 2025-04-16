@@ -1,42 +1,30 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Define the header row with the block name
+  const cells = [];
+
+  // Add header row
   const headerRow = ['Accordion'];
+  cells.push(headerRow);
 
-  const rows = [];
+  // Process each accordion section
+  const sections = element.querySelectorAll('[data-component="GuideSection"]');
+  sections.forEach((section) => {
+    const titleElement = section.querySelector('[data-ref="heading"]');
+    const contentElement = section.querySelector('[data-component="RichText"]');
 
-  // Select all accordion sections within the element
-  const sections = element.querySelectorAll('.VerticalRhythm-sc-16b971y-0.kgLxmR[data-component="GuideSection"]');
+    if (titleElement && contentElement) {
+      const title = titleElement.textContent.trim();
+      
+      // Clone content to preserve elements
+      const contentClone = contentElement.cloneNode(true);
 
-  // Iterate through each section to extract title and content
-  sections.forEach(section => {
-    const title = section.querySelector('h2')?.textContent.trim();
-
-    // Combine all relevant content elements (paragraphs, lists, headings, links)
-    const contentElements = Array.from(section.querySelectorAll('p, ul, h3, a')).map(el => {
-      if (el.tagName === 'A') {
-        const link = document.createElement('a');
-        link.href = el.href;
-        link.textContent = el.textContent.trim();
-        return link;
-      }
-      return el.cloneNode(true);
-    });
-
-    // Create a content cell to store all extracted elements
-    const contentCell = document.createElement('div');
-    contentElements.forEach(el => contentCell.appendChild(el));
-
-    // Add the title and content cell as a row in the table
-    rows.push([title, contentCell]);
+      cells.push([title, contentClone]);
+    }
   });
 
-  // Combine header row and all rows into the final cells array
-  const cells = [headerRow, ...rows];
-
-  // Create the structured table block using WebImporter.DOMUtils.createTable
+  // Create table block
   const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace the original element with the newly created block
+  // Replace the original element
   element.replaceWith(block);
 }

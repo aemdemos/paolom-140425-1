@@ -1,41 +1,37 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper function to extract accordion content
-  const extractAccordionContent = (accordion) => {
-    const title = accordion.querySelector('[data-ref="accordionHeading"]');
-    const content = accordion.querySelector('[data-ref="accordionContent"]');
+  const cells = [];
 
-    if (!title || !content) return null;
-
-    const titleText = title.textContent.trim();
-    const contentElements = Array.from(content.querySelectorAll('p')).map((p) => {
-      const clonedP = document.createElement('p');
-      clonedP.innerHTML = p.innerHTML;
-      return clonedP;
-    });
-
-    return [titleText, contentElements];
-  };
-
-  // Extract all accordion items
-  const accordionItems = Array.from(element.querySelectorAll('[data-ref="accordion"]'));
-
-  const rows = accordionItems.map((accordion) => extractAccordionContent(accordion)).filter(Boolean);
-
-  if (rows.length === 0) {
-    console.warn('No accordion items found in the element.');
-    return; // Return early if no valid content is found
-  }
-
-  // Define the block header row
+  // Add the header row with exact matching text from the example
   const headerRow = ['Accordion'];
+  cells.push(headerRow);
 
-  // Combine header row and content rows
-  const tableData = [headerRow, ...rows];
+  // Extract accordion items dynamically
+  const accordionItems = element.querySelectorAll('[data-ref="accordion"]');
 
-  // Create the table block
-  const block = WebImporter.DOMUtils.createTable(tableData, document);
+  accordionItems.forEach((accordion) => {
+    const titleElement = accordion.querySelector('[data-ref="accordionHeading"]');
+    const title = titleElement ? titleElement.textContent.trim() : ''; // Handle missing title gracefully
 
-  // Replace the original element
-  element.replaceWith(block);
+    const contentElement = accordion.querySelector('[data-ref="accordionContent"]');
+    const content = [];
+
+    if (contentElement) {
+      const paragraphs = contentElement.querySelectorAll('p');
+      paragraphs.forEach((paragraph) => {
+        content.push(paragraph.cloneNode(true)); // Clone nodes to retain full structure
+      });
+    } else {
+      content.push(document.createTextNode('No content available')); // Fallback for missing content
+    }
+
+    // Push the extracted title and content into the table structure
+    cells.push([title, content]);
+  });
+
+  // Create the table block using WebImporter.DOMUtils.createTable
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element with the newly created table block
+  element.replaceWith(table);
 }

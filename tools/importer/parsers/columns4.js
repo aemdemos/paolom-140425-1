@@ -1,51 +1,42 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    const headerRow = ['Columns'];
+  const headerRow = ['Columns'];
 
-    const bulletDiv = element.querySelector('ul');
-    const bulletPoints = document.createElement('div');
-    if (bulletDiv) {
-        bulletPoints.appendChild(bulletDiv.cloneNode(true));
-    } else {
-        const list = document.createElement('ul');
-        ['One', 'Two', 'Three'].forEach((item) => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            list.appendChild(li);
-        });
-        bulletPoints.appendChild(list);
-    }
+  // Create first column content dynamically
+  const firstColumnContent = document.createElement('div');
+  const list = document.createElement('ul');
+  const listItems = ['One', 'Two', 'Three'];
+  listItems.forEach((item) => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    list.appendChild(li);
+  });
+  const liveLink = document.createElement('a');
+  liveLink.href = 'https://word-edit.officeapps.live.com/';
+  liveLink.textContent = 'Live';
+  firstColumnContent.append(list, liveLink);
 
-    const liveAnchor = element.querySelector('a[href$="word-edit.officeapps.live.com/"]');
-    if (liveAnchor) {
-        bulletPoints.appendChild(liveAnchor.cloneNode(true));
-    } else {
-        const liveButton = document.createElement('a');
-        liveButton.href = 'https://word-edit.officeapps.live.com/';
-        liveButton.textContent = 'Live';
-        bulletPoints.appendChild(liveButton);
-    }
+  // Create second column content dynamically
+  const greenImage = document.createElement('img');
+  greenImage.src = 'https://sidekick-library--sta-boilerplate--aemdemos.hlx.page/media_193050d52a802830d970fde49644ae9a504a61b7f.png#width=750&height=500';
+  greenImage.alt = 'Green Double Helix';
 
-    const greenImg = element.querySelector('img[src*="media_193050d52a802830d970fde49644ae9a504a61b7f.png"]');
-    const greenDoubleHelixImg = document.createElement('img');
-    greenDoubleHelixImg.src = greenImg ? greenImg.src : 'https://sidekick-library--sta-boilerplate--aemdemos.hlx.page/media_193050d52a802830d970fde49644ae9a504a61b7f.png';
+  // Create third column content dynamically
+  const thirdColumnContent = document.createElement('div');
+  const yellowImage = document.createElement('img');
+  yellowImage.src = 'https://sidekick-library--sta-boilerplate--aemdemos.hlx.page/media_1e562f39bbce4d269e279cbbf8c5674a399fe0070.png#width=644&height=470';
+  yellowImage.alt = 'Yellow Double Helix';
+  const previewLink = document.createElement('a');
+  previewLink.href = 'https://word-edit.officeapps.live.com/';
+  previewLink.textContent = 'Preview';
+  thirdColumnContent.append('Or you can just view the preview', previewLink);
 
-    const yellowImg = element.querySelector('img[src*="media_1e562f39bbce4d269e279cbbf8c5674a399fe0070.png"]');
-    const yellowDoubleHelixImg = document.createElement('img');
-    yellowDoubleHelixImg.src = yellowImg ? yellowImg.src : 'https://sidekick-library--sta-boilerplate--aemdemos.hlx.page/media_1e562f39bbce4d269e279cbbf8c5674a399fe0070.png';
-
-    const previewTextDiv = document.createElement('div');
-    previewTextDiv.innerHTML = "Or you can just view the preview<br>";
-    const previewButton = document.createElement('a');
-    previewButton.href = 'https://word-edit.officeapps.live.com/';
-    previewButton.textContent = 'Preview';
-    previewTextDiv.appendChild(previewButton);
-
-    const secondRow = [bulletPoints, greenDoubleHelixImg];
-    const thirdRow = [yellowDoubleHelixImg, previewTextDiv];
-
-    const cells = [headerRow, secondRow, thirdRow];
-    const blockTable = WebImporter.DOMUtils.createTable(cells, document);
-
-    element.replaceWith(blockTable);
+  // Assemble rows into cells
+  const cells = [
+    headerRow,
+    [firstColumnContent, greenImage],
+    [yellowImage, thirdColumnContent]
+  ];
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(block);
 }

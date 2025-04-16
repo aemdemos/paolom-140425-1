@@ -2,30 +2,31 @@
 export default function parse(element, { document }) {
   const cells = [];
 
-  // Header row - matches example exactly
-  cells.push(['Embed']);
+  // Header row
+  const headerRow = ['Embed'];
+  cells.push(headerRow);
 
-  // Extract URLs dynamically and ensure proper separation
-  const links = Array.from(element.querySelectorAll('a')).map((link) => {
-    const container = document.createElement('div'); // Separate links logically
-    const url = document.createElement('a');
-    url.href = link.href;
-    url.textContent = link.href;
-    container.appendChild(url);
-    return container;
+  // Extract links dynamically and format as plain text wrapped in <span>
+  const links = Array.from(element.querySelectorAll('a')).map(a => {
+    const urlSpan = document.createElement('span');
+    urlSpan.textContent = a.href; // Use plain text for URLs
+    return urlSpan;
   });
 
-  // Content row with separate link elements
-  if (links.length > 0) {
-    cells.push([links]);
-  } else {
-    console.warn('No links found in the provided element');
-    cells.push(['No content available']);
+  // Handle edge cases where links might be empty
+  if (links.length === 0) {
+    const emptySpan = document.createElement('span');
+    emptySpan.textContent = 'No links available';
+    links.push(emptySpan);
   }
 
-  // Create the block table
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // Content row with formatted links
+  const contentRow = [links];
+  cells.push(contentRow);
 
-  // Replace the original element
-  element.replaceWith(table);
+  // Create the table using the helper function
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element with the new block table
+  element.replaceWith(blockTable);
 }

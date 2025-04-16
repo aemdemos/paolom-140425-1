@@ -2,41 +2,36 @@
 export default function parse(element, { document }) {
   const headerRow = ['Cards (no images)'];
 
-  const cards = element.querySelectorAll('[data-component="CardCTATextLinks"]');
-
-  const rows = Array.from(cards).map((card) => {
+  const rows = Array.from(element.querySelectorAll('[data-component="CardCTATextLinks"]')).map((card) => {
     const heading = card.querySelector('[data-ref="heading"]');
-    const description = card.querySelector('p');
+    const description = card.querySelector('.Content-sc-mh9bui-0 p');
     const link = card.querySelector('[data-ref="link"]');
 
-    const cellContent = [];
+    const content = [];
 
     if (heading) {
-      const headingElement = document.createElement('strong');
-      headingElement.textContent = heading.textContent;
-      cellContent.push(headingElement);
-      cellContent.push(document.createElement('br'));
+      const headingEl = document.createElement('strong');
+      headingEl.textContent = heading.textContent.trim();
+      content.push(headingEl);
+      content.push(document.createElement('br'));
     }
 
     if (description) {
-      const descriptionElement = document.createElement('span');
-      descriptionElement.textContent = description.textContent;
-      cellContent.push(descriptionElement);
-      cellContent.push(document.createElement('br'));
+      content.push(description.textContent.trim());
+      content.push(document.createElement('br'));
     }
 
     if (link) {
-      const linkElement = document.createElement('a');
-      linkElement.href = link.href;
-      linkElement.textContent = link.textContent;
-      cellContent.push(linkElement);
+      const linkEl = document.createElement('a');
+      linkEl.href = link.href;
+      linkEl.textContent = link.textContent.trim();
+      content.push(linkEl);
     }
 
-    return [cellContent];
-  });
+    return content.length > 0 ? [content] : null;
+  }).filter(row => row !== null);
 
-  const tableCells = [headerRow, ...rows];
-  const table = WebImporter.DOMUtils.createTable(tableCells, document);
-
-  element.replaceWith(table);
+  const tableData = [headerRow, ...rows];
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+  element.replaceWith(blockTable);
 }

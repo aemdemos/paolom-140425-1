@@ -1,35 +1,43 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract relevant content
-  const items = Array.from(element.querySelectorAll('li')).map((item) => {
-    const heading = item.querySelector('h3')?.textContent.trim();
-    const paragraph = item.querySelector('p')?.textContent.trim();
+  const headerRow = ['Columns'];
+
+  // Extract content from the list items in the provided element
+  const listItems = element.querySelectorAll('li');
+
+  const contentCells = Array.from(listItems).map((item) => {
+    const heading = item.querySelector('h3');
+    const paragraph = item.querySelector('p');
     const image = item.querySelector('img');
 
+    const headingElement = heading ? document.createElement('h3') : null;
+    if (headingElement) {
+      headingElement.textContent = heading.textContent.trim();
+    }
+
+    const paragraphElement = paragraph ? document.createElement('p') : null;
+    if (paragraphElement) {
+      paragraphElement.textContent = paragraph.textContent.trim();
+    }
+
     const imageElement = image ? document.createElement('img') : null;
-    if (image && imageElement) {
+    if (imageElement) {
       imageElement.src = image.src;
-      imageElement.alt = image.alt || '';
+      imageElement.alt = image.alt;
     }
 
     return [
-      [
-        heading ? document.createTextNode(heading) : '',
-        paragraph ? document.createTextNode(paragraph) : '',
-      ].filter(Boolean),
+      [headingElement, paragraphElement],
       imageElement,
-    ];
+    ].flat().filter(Boolean);
   });
 
-  // Create block table
-  const headerRow = ['Columns'];
   const cells = [
     headerRow,
-    ...items,
+    ...contentCells,
   ];
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  const table = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace original element with the new block table
-  element.replaceWith(blockTable);
+  element.replaceWith(table);
 }

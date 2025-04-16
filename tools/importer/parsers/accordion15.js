@@ -1,26 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Accordion'];
+    const createTable = WebImporter.DOMUtils.createTable;
 
-  const rows = [];
+    // Header row as described in the example
+    const headerRow = ['Accordion'];
 
-  // Extract all accordion items
-  const accordionItems = element.querySelectorAll('[data-ref="accordion"]');
+    // Collecting accordion rows dynamically
+    const accordionRows = [...element.querySelectorAll('[data-ref="accordion"]')].map((accordion) => {
+        const titleElement = accordion.querySelector('[data-ref="accordionHeading"]');
+        const contentElement = accordion.querySelector('[data-ref="accordionContent"]');
 
-  accordionItems.forEach((accordion) => {
-    const titleButton = accordion.querySelector('[data-ref="accordionHeading"]');
-    const content = accordion.querySelector('[data-ref="accordionContent"]');
+        const title = titleElement ? titleElement.textContent.trim() : '';
+        const content = contentElement ? contentElement.cloneNode(true) : document.createElement('div');
 
-    if (titleButton && content) {
-      const title = titleButton.textContent.trim();
-      const contentClone = content.cloneNode(true);
-      rows.push([title, contentClone]);
-    }
-  });
+        return [title, content];
+    });
 
-  const cells = [headerRow, ...rows];
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+    // Combining header and content rows into a table data array
+    const tableData = [headerRow, ...accordionRows];
 
-  // Replace the original element
-  element.replaceWith(blockTable);
+    // Creating the structured block table
+    const blockTable = createTable(tableData, document);
+
+    // Replacing the original element with the block table
+    element.replaceWith(blockTable);
 }

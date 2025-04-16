@@ -1,27 +1,40 @@
 /* global WebImporter */
-export default function parse(element, { document }) {
-  // Extract the title
-  const title = element.querySelector('[data-ref="heading"]')?.textContent.trim();
+ export default function parse(element, { document }) {
+  const headerRow = ['Cards (no images)'];
 
-  // Extract the paragraph under the title
-  const paragraph = element.querySelector('[data-component="RichText"]')?.textContent.trim();
-
-  // Extract the list items
-  const listItems = element.querySelectorAll('[data-ref="list"] li');
+  const rows = [];
   
-  const cardsData = Array.from(listItems).map((item) => {
-    const content = item.querySelector('.Content-sc-mh9bui-0')?.textContent.trim();
-    return content;
+  // Extract heading
+  const heading = element.querySelector('h2')?.textContent?.trim();
+  if (heading) {
+    const headingElement = document.createElement('strong');
+    headingElement.textContent = heading;
+    rows.push([headingElement]);
+  }
+
+  // Extract paragraph
+  const paragraph = element.querySelector('div[data-component="RichText"] p')?.textContent?.trim();
+  if (paragraph) {
+    const paragraphElement = document.createElement('p');
+    paragraphElement.textContent = paragraph;
+    rows.push([paragraphElement]);
+  }
+
+  // Extract list items
+  const listItems = element.querySelectorAll('ul li');
+  listItems.forEach((item) => {
+    const listItemContent = item.querySelector('div')?.textContent?.trim();
+    if (listItemContent) {
+      const listItemElement = document.createElement('p');
+      listItemElement.textContent = listItemContent;
+      rows.push([listItemElement]);
+    }
   });
 
-  // Prepare the table cells
-  const cells = [
-    ["Cards (no images)"],
-    ...cardsData.map(card => card ? [card] : [])
-  ];
-
+  // Create table
+  const cells = [headerRow, ...rows];
   const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace the original element with the new block table
+  // Replace element with block table
   element.replaceWith(blockTable);
 }

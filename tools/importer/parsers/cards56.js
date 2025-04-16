@@ -1,40 +1,52 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const cards = Array.from(element.querySelectorAll('[data-component="CardCTATextLinks"]'));
+  const cells = [];
 
-  const cells = [
-    ['Cards'],
-  ];
+  // Add the header row.
+  cells.push(['Cards']);
+
+  // Select all individual cards within the element.
+  const cards = element.querySelectorAll('[data-component="CardCTATextLinks"]');
 
   cards.forEach((card) => {
     const imageContainer = card.querySelector('[data-testid="ImageContainer"]');
-    const image = imageContainer ? imageContainer.cloneNode(true) : null;
+    const heading = card.querySelector('[data-ref="heading"]');
+    const descriptionWrapper = card.querySelector('[data-testid="CardContent"]');
+    const link = card.querySelector('[data-ref="link"]');
 
-    const heading = card.querySelector('h2') ? card.querySelector('h2').textContent.trim() : '';
-    const paragraphs = Array.from(card.querySelectorAll('p')).map(p => p.textContent.trim());
-    const link = card.querySelector('a');
-    const linkText = link ? link.textContent.trim() : '';
-    const linkElement = link ? link.cloneNode(true) : null;
+    const image = document.createElement('div');
+    image.style.backgroundImage = imageContainer ? imageContainer.style.backgroundImage : '';
 
-    const textContent = document.createElement('div');
+    const content = document.createElement('div');
+
     if (heading) {
-      const headingElement = document.createElement('h2');
-      headingElement.textContent = heading;
-      textContent.appendChild(headingElement);
-    }
-    paragraphs.forEach((paragraph) => {
-      const paragraphElement = document.createElement('p');
-      paragraphElement.textContent = paragraph;
-      textContent.appendChild(paragraphElement);
-    });
-    if (linkElement) {
-      textContent.appendChild(linkElement);
+      const title = document.createElement('h2');
+      title.textContent = heading.textContent;
+      content.appendChild(title);
     }
 
-    cells.push([image, textContent]);
+    if (descriptionWrapper) {
+      const paragraphs = descriptionWrapper.querySelectorAll('p');
+      paragraphs.forEach((p) => {
+        content.appendChild(p.cloneNode(true));
+      });
+    }
+
+    if (link) {
+      const linkElement = document.createElement('p');
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.textContent;
+      linkElement.appendChild(anchor);
+      content.appendChild(linkElement);
+    }
+
+    cells.push([image, content]);
   });
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the table.
+  const table = WebImporter.DOMUtils.createTable(cells, document);
 
-  element.replaceWith(blockTable);
+  // Replace the original element with the table.
+  element.replaceWith(table);
 }

@@ -1,23 +1,20 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract the tab labels and their corresponding content dynamically
-  const tabs = [];
-  const listItems = element.querySelectorAll('ul > li');
+  const headerRow = ['Tabs'];
+  const rows = [];
 
-  listItems.forEach(li => {
-    const button = li.querySelector('button');
-    if (button) {
-      const tabLabel = button.querySelector('span:nth-child(2)')?.textContent.trim();
-      const tabContent = document.createElement('div');
-      tabContent.textContent = `Content for ${tabLabel}`; // Placeholder for actual tab content if available
-      tabs.push([tabLabel, tabContent]);
-    }
+  const navItems = element.querySelectorAll('button');
+
+  navItems.forEach((navItem) => {
+    const tabLabel = navItem.querySelector('span:last-of-type')?.textContent?.trim() || 'Untitled Tab';
+
+    const associatedContent = document.createElement('div');
+    associatedContent.textContent = `Dynamic content for ${tabLabel} goes here`; // Placeholder for real extracted content
+
+    rows.push([tabLabel, associatedContent]);
   });
 
-  // Create the table structure
-  const cells = [['Tabs'], ...tabs];
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  const table = WebImporter.DOMUtils.createTable([headerRow, ...rows], document);
 
-  // Replace the original element with the newly created table
-  element.replaceWith(blockTable);
+  element.replaceWith(table);
 }

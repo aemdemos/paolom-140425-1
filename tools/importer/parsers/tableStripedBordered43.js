@@ -1,31 +1,52 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper function to parse tables
-  const parseTable = (table, document) => {
-    // Ensure the header row matches the example exactly
-    const headerRow = [document.createElement('strong')];
-    headerRow[0].textContent = 'Table (striped, bordered)';
 
-    const rows = Array.from(table.rows).map((row) => {
-      return Array.from(row.cells).map((cell) => {
-        // Extract cell content dynamically
-        return cell.innerHTML.trim() || ''; // Handle missing or empty data
-      });
+  const headerRow = ['Table (striped, bordered)'];
+
+  const extractTableData = (tableElement) => {
+    const rows = [];
+    const tableHeader = tableElement.querySelector('thead')?.querySelectorAll('tr') || [];
+    const tableBody = tableElement.querySelector('tbody')?.querySelectorAll('tr') || [];
+
+    tableHeader.forEach((headerRow) => {
+      const cols = Array.from(headerRow.children).map((col) => col.textContent.trim());
+      rows.push(cols);
     });
 
-    // Create table block using WebImporter helper
-    return WebImporter.DOMUtils.createTable(
-      [headerRow, ...rows],
-      document
-    );
+    tableBody.forEach((bodyRow) => {
+      const cols = Array.from(bodyRow.children).map((col) => {
+        const links = col.querySelectorAll('a');
+        if (links.length > 0) {
+          return Array.from(links).map((link) => {
+            const span = document.createElement('span');
+            span.textContent = link.textContent.trim();
+            span.setAttribute('href', link.href);
+            return span;
+          });
+        }
+        return col.textContent.trim();
+      });
+      rows.push(cols);
+    });
+
+    return rows;
   };
 
-  // Locate all tables within the element
-  const tables = Array.from(element.querySelectorAll('table'));
+  const tables = element.querySelectorAll('table');
+  const tableBlocks = [];
 
-  // Extract tables and replace original element
   tables.forEach((table) => {
-    const structuredTable = parseTable(table, document);
-    table.parentElement.replaceChild(structuredTable, table);
+    const extractedTableData = extractTableData(table);
+    const tableStructure = [headerRow, ...extractedTableData];
+    const block = WebImporter.DOMUtils.createTable(tableStructure, document);
+    tableBlocks.push(block);
   });
+
+  const wrapper = document.createElement('div');
+  tableBlocks.forEach((block) => {
+    wrapper.appendChild(block);
+    wrapper.appendChild(document.createElement('hr'));
+  });
+
+  element.replaceWith(wrapper);
 }

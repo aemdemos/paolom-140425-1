@@ -1,40 +1,29 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    // Helper function to create rows for the accordion table
-    const createAccordionRow = (title, content) => {
-        return [title, content];
-    };
+  const rows = [];
 
-    const cells = [];
+  // Header row
+  rows.push(["Accordion"]);
 
-    // Add the header row specifying the block name
-    cells.push(['Accordion']);
+  // Collect title-content pairs from the element
+  const sections = element.querySelectorAll('h2[data-ref="heading"], h3[data-ref="heading"]');
 
-    // Find all the sections with headings and content
-    const sections = element.querySelectorAll('h2');
+  sections.forEach((section) => {
+    const title = section.textContent.trim();
 
-    sections.forEach((heading) => {
-        const title = heading.textContent.trim();
+    // Find content after the title
+    const content = document.createElement('div');
+    let nextSibling = section.nextElementSibling;
+    while (nextSibling && nextSibling.tagName !== 'HR') {
+      content.appendChild(nextSibling.cloneNode(true));
+      nextSibling = nextSibling.nextElementSibling;
+    }
 
-        // Find content related to the heading
-        let content = [];
-        let sibling = heading.nextElementSibling;
+    // Ensure both title and content are added to rows
+    rows.push([title, content]);
+  });
 
-        while (sibling && sibling.tagName !== 'H2') {
-            if (sibling.tagName === 'P' || sibling.tagName === 'DIV') {
-                content.push(sibling.cloneNode(true));
-            }
-            sibling = sibling.nextElementSibling;
-        }
-
-        // Ensure content is properly extracted and included
-        if (content.length > 0) {
-            cells.push(createAccordionRow(title, content));
-        }
-    });
-
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-
-    // Replace the original element with the table
-    element.replaceWith(table);
+  // Create table and replace original element
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }
