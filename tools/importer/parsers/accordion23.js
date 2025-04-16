@@ -1,29 +1,28 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Define the header row according to the example provided
-  const headerRow = ['Accordion'];
+    const rows = [];
 
-  // Extract rows by iterating over h2 elements and their contents
-  const rows = Array.from(element.querySelectorAll('h2')).map((heading) => {
-    const title = heading.textContent.trim();
+    // Add the header row dynamically
+    const headerRow = ['Accordion'];
+    rows.push(headerRow);
 
-    // Collect all sibling elements until the next h2 or end
-    const content = [];
-    let nextSibling = heading.nextElementSibling;
-    while (nextSibling && nextSibling.tagName !== 'H2') {
-      content.push(nextSibling);
-      nextSibling = nextSibling.nextElementSibling;
-    }
+    // Extract the accordion items
+    const accordionSections = element.querySelectorAll('h2, h3, div[data-component="RichText"]');
 
-    return [title, content];
-  });
+    let title = '';
+    accordionSections.forEach((item) => {
+        if (item.tagName === 'H2' || item.tagName === 'H3') {
+            title = item.textContent.trim();
+        } else if (item.tagName === 'DIV' && title) {
+            const content = item.cloneNode(true); // Clone to retain HTML structure
+            rows.push([title, content]);
+            title = ''; // Reset title after associating it with content
+        }
+    });
 
-  // Combine header row and content rows
-  const cells = [headerRow, ...rows];
+    // Create the table
+    const table = WebImporter.DOMUtils.createTable(rows, document);
 
-  // Create the table using the provided helper function
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the new table
-  element.replaceWith(table);
+    // Replace the original element with the table
+    element.replaceWith(table);
 }

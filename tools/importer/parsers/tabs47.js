@@ -1,23 +1,28 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract the tab labels and their corresponding content dynamically
   const tabs = [];
-  const listItems = element.querySelectorAll('ul > li');
 
-  listItems.forEach(li => {
-    const button = li.querySelector('button');
-    if (button) {
-      const tabLabel = button.querySelector('span:nth-child(2)')?.textContent.trim();
-      const tabContent = document.createElement('div');
-      tabContent.textContent = `Content for ${tabLabel}`; // Placeholder for actual tab content if available
-      tabs.push([tabLabel, tabContent]);
-    }
+  // Extract all tab labels and their content
+  const listItems = element.querySelectorAll('li.ButtonAndDropdownContainer-sc-15zdlyk-0');
+  listItems.forEach((item) => {
+    const labelElement = item.querySelector('span:nth-child(2)');
+    const label = labelElement ? labelElement.textContent.trim() : '';
+
+    // Tab content placeholder (no detailed content available in provided HTML)
+    const content = document.createElement('p');
+    content.textContent = `Content for ${label}`;
+
+    // Add to tabs array as [Tab Label, Tab Content]
+    tabs.push([label, content]);
   });
 
   // Create the table structure
-  const cells = [['Tabs'], ...tabs];
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  const tableData = [
+    ['Tabs'],
+    ...tabs,
+  ];
 
-  // Replace the original element with the newly created table
+  // Create and replace the original element with the block table
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
   element.replaceWith(blockTable);
 }

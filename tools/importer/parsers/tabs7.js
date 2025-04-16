@@ -1,22 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract the navigation items dynamically from the HTML element
-  const items = Array.from(element.querySelectorAll('button')).map(button => {
-    const label = button.querySelector('span:nth-child(2)')?.textContent.trim();
-    const contentElement = document.createElement('div');
-    contentElement.textContent = `Extracted content for ${label}`; // Replace with actual content extraction logic if available
-    return [label, contentElement];
-  }).filter(row => row[0]); // Filter out empty rows
-
-  // Create the header row for the table
   const headerRow = ['Tabs'];
 
-  // Combine the header row and extracted rows into the table structure
-  const tableData = [headerRow, ...items];
+  // Extract tab labels and content
+  const tabs = Array.from(element.querySelectorAll('ul > li')).map((li) => {
+    // Extract tab label
+    const tabLabel = li.querySelector('button > span:last-child');
+    const labelText = tabLabel ? tabLabel.textContent.trim() : '';
 
-  // Create the table block using WebImporter.DOMUtils.createTable
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+    // Placeholder for dynamic content extraction
+    // Ideally, extract actual tab content from relevant child elements
+    // Assuming content is not available directly, we use the label as content for now.
+    const tabContent = document.createTextNode(labelText + ' Content');
 
-  // Replace the original element with the new block table
-  element.replaceWith(blockTable);
+    return [labelText, tabContent];
+  });
+
+  // Create the block table
+  const cells = [headerRow, ...tabs];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element
+  element.replaceWith(table);
+
+  return table;
 }

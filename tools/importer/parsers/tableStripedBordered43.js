@@ -1,31 +1,26 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper function to parse tables
-  const parseTable = (table, document) => {
-    // Ensure the header row matches the example exactly
-    const headerRow = [document.createElement('strong')];
-    headerRow[0].textContent = 'Table (striped, bordered)';
+  const createTable = WebImporter.DOMUtils.createTable;
+
+  const tables = Array.from(element.querySelectorAll('table'));
+
+  const structuredTables = tables.map((table) => {
+    const headerRow = ['Table (striped, bordered)']; // Using the exact header row from example
 
     const rows = Array.from(table.rows).map((row) => {
       return Array.from(row.cells).map((cell) => {
-        // Extract cell content dynamically
-        return cell.innerHTML.trim() || ''; // Handle missing or empty data
+        const clonedCell = cell.cloneNode(true);
+        clonedCell.innerHTML = cell.innerHTML.trim(); // Ensure we get dynamic content and clean whitespace
+        return clonedCell;
       });
     });
 
-    // Create table block using WebImporter helper
-    return WebImporter.DOMUtils.createTable(
-      [headerRow, ...rows],
-      document
-    );
-  };
-
-  // Locate all tables within the element
-  const tables = Array.from(element.querySelectorAll('table'));
-
-  // Extract tables and replace original element
-  tables.forEach((table) => {
-    const structuredTable = parseTable(table, document);
-    table.parentElement.replaceChild(structuredTable, table);
+    return createTable([headerRow, ...rows], document);
   });
+
+  structuredTables.forEach((blockTable) => {
+    element.append(blockTable); // Append the new structured table to the element
+  });
+
+  element.querySelectorAll('table').forEach((table) => table.remove()); // Remove original tables
 }

@@ -1,35 +1,43 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract relevant content
-  const items = Array.from(element.querySelectorAll('li')).map((item) => {
-    const heading = item.querySelector('h3')?.textContent.trim();
-    const paragraph = item.querySelector('p')?.textContent.trim();
+  // Define the header row for the table
+  const headerRow = ['Columns'];
+
+  const cells = [headerRow];
+
+  // Extract all `li` items within the given element
+  const items = Array.from(element.querySelectorAll('li'));
+
+  // Map over `li` items to create structured content for each column
+  const columns = items.map((item) => {
+    const title = item.querySelector('h3');
+    const paragraph = item.querySelector('p');
     const image = item.querySelector('img');
 
-    const imageElement = image ? document.createElement('img') : null;
-    if (image && imageElement) {
+    // Create and populate title element
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = title ? title.textContent.trim() : '';
+
+    // Create and populate paragraph element
+    const paragraphElement = document.createElement('p');
+    paragraphElement.textContent = paragraph ? paragraph.textContent.trim() : '';
+
+    // Create and populate image element
+    const imageElement = document.createElement('img');
+    if (image && image.src) {
       imageElement.src = image.src;
       imageElement.alt = image.alt || '';
     }
 
-    return [
-      [
-        heading ? document.createTextNode(heading) : '',
-        paragraph ? document.createTextNode(paragraph) : '',
-      ].filter(Boolean),
-      imageElement,
-    ];
+    return [titleElement, paragraphElement, imageElement];
   });
 
-  // Create block table
-  const headerRow = ['Columns'];
-  const cells = [
-    headerRow,
-    ...items,
-  ];
+  // Add extracted columns to the table rows
+  cells.push(columns);
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the block table using the helper function
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Replace original element with the new block table
-  element.replaceWith(blockTable);
+  // Replace the original element with the newly created block table
+  element.replaceWith(block);
 }

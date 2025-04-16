@@ -4,38 +4,30 @@ export default function parse(element, { document }) {
 
   const rows = [];
 
-  // Extract the heading from the element
-  const heading = element.querySelector('h2');
-
-  if (heading) {
-    rows.push([heading.cloneNode(true)]);
+  // Extract the title content as plain text
+  const title = element.querySelector('h2');
+  if (title) {
+    rows.push([title.textContent.trim()]);
   }
 
-  // Extract the list of links dynamically
-  const list = element.querySelector('ul');
+  // Extract the list items and their links as plain text
+  const listItems = element.querySelectorAll('ul > li');
+  listItems.forEach((li) => {
+    const link = li.querySelector('a');
+    const linkContent = link ? link.textContent.trim() : '';
+    rows.push([linkContent]);
+  });
 
-  if (list) {
-    const items = Array.from(list.querySelectorAll('li'));
-    items.forEach((item) => {
-      const link = item.querySelector('a');
-      if (link) {
-        rows.push([link.cloneNode(true)]);
-      }
-    });
+  // Extract the footer link as plain text
+  const footerLink = element.querySelector('footer a');
+  if (footerLink) {
+    rows.push([footerLink.textContent.trim()]);
   }
 
-  // Extract footer link dynamically
-  const footer = element.querySelector('footer');
-  if (footer) {
-    const footerLink = footer.querySelector('a');
-    if (footerLink) {
-      rows.push([footerLink.cloneNode(true)]);
-    }
-  }
+  // Create the block table using WebImporter.DOMUtils.createTable()
+  const tableData = [headerRow, ...rows];
+  const block = WebImporter.DOMUtils.createTable(tableData, document);
 
-  // Create the table using WebImporter.DOMUtils.createTable
-  const table = WebImporter.DOMUtils.createTable([headerRow, ...rows], document);
-
-  // Replace the original element with the new block table
-  element.replaceWith(table);
+  // Replace the original element with the new table
+  element.replaceWith(block);
 }

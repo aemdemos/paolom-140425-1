@@ -1,17 +1,26 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const formElement = element.querySelector('form');
+  const headerRow = ['Search'];
 
-  // Fix: Ensure action attribute is extracted correctly, even if empty
-  const actionURL = formElement?.getAttribute('action');
-  const validURL = actionURL && actionURL !== '#' ? actionURL : 'https://main--helix-block-collection--adobe.hlx.page/block-collection/sample-search-data/query-index.json';
+  // Extract URL dynamically from the <form> element and handle the '#' fallback case
+  const searchForm = element.querySelector('form');
+  let searchUrl = '';
+  if (searchForm && searchForm.hasAttribute('action')) {
+    const actionValue = searchForm.getAttribute('action');
+    searchUrl = actionValue === '#' ? 'URL not found' : actionValue;
+  } else {
+    searchUrl = 'URL not found';
+  }
 
-  const tableData = [
-    ['Search'],
-    [validURL],
+  const dataRows = [
+    [searchUrl],
   ];
 
-  const block = WebImporter.DOMUtils.createTable(tableData, document);
+  const tableData = [headerRow, ...dataRows];
 
-  element.replaceWith(block);
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+
+  element.replaceWith(blockTable);
+
+  return blockTable;
 }

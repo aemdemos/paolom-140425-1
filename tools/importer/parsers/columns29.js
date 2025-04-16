@@ -1,56 +1,52 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  if (!element || !(element instanceof document.defaultView.HTMLElement)) {
-    console.error('Invalid or undefined element provided.');
-    return;
-  }
-
-  const sections = Array.from(element.querySelectorAll('section'));
-  if (sections.length === 0) {
-    console.error('No section elements found in the provided element.');
-    return;
-  }
-
   const headerRow = ['Columns'];
-  const columns = [];
 
-  sections.forEach((section) => {
-    const title = section.querySelector('h2')?.textContent.trim() || '';
+  // Ensure the input element is a valid HTMLElement
+  if (!(element instanceof document.defaultView.HTMLElement)) {
+    console.error('Invalid element provided');
+    return;
+  }
+
+  // Check if sections exist before querying
+  const sections = element.querySelectorAll('section');
+
+  const contentRows = Array.from(sections).map((section) => {
+    const headerElement = section.querySelector('h2');
+    const header = headerElement ? headerElement.textContent.trim() : '';
+
     const listItems = Array.from(section.querySelectorAll('li')).map((item) => {
       const link = item.querySelector('a');
       if (link) {
-        const text = link.textContent.trim();
-        const href = link.getAttribute('href');
-        const anchor = document.createElement('a');
-        anchor.textContent = text;
-        anchor.href = href;
-        return anchor;
-      } else {
-        const fallbackText = document.createTextNode(item.textContent.trim());
-        return fallbackText;
+        const linkContent = document.createElement('a');
+        linkContent.href = link.href;
+        linkContent.textContent = link.querySelector('span')?.textContent.trim() || '';
+        return linkContent;
       }
+      return document.createTextNode('');
     });
 
-    const columnContent = document.createElement('div');
-    if (title) {
-      const heading = document.createElement('h3');
-      heading.textContent = title;
-      columnContent.appendChild(heading);
+    const contentCell = document.createElement('div');
+    if (header) {
+      const sectionHeader = document.createElement('h3');
+      sectionHeader.textContent = header;
+      contentCell.appendChild(sectionHeader);
     }
+    listItems.forEach((link) => contentCell.appendChild(link));
 
-    const list = document.createElement('ul');
-    listItems.forEach((item) => {
-      const listItem = document.createElement('li');
-      listItem.appendChild(item);
-      list.appendChild(listItem);
-    });
-    columnContent.appendChild(list);
-
-    columns.push(columnContent);
+    return contentCell;
   });
 
-  const tableData = [headerRow, columns];
-  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+  // Combine header and content into table
+  const cells = [
+    headerRow,
+    contentRows
+  ];
 
-  element.replaceWith(blockTable);
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the element with the block
+  if (block) {
+    element.replaceWith(block);
+  }
 }

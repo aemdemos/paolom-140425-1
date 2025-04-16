@@ -1,40 +1,38 @@
 /* global WebImporter */
-export default function parse(element, { document }) {
-    // Helper function to create rows for the accordion table
-    const createAccordionRow = (title, content) => {
-        return [title, content];
-    };
+ export default function parse(element, { document }) {
+  // Extract heading and content pairs
+  const sections = Array.from(element.querySelectorAll('h2, h3, p, a')).reduce((acc, el) => {
+    const lastSection = acc[acc.length - 1];
 
-    const cells = [];
+    if (el.tagName === 'H2' || el.tagName === 'H3') {
+      // Start a new section for headings
+      const section = {
+        title: el.innerText.trim(),
+        content: [],
+      };
+      acc.push(section);
+    } else if (el.tagName === 'P' || el.tagName === 'A') {
+      // Append content to the last section
+      if (lastSection) {
+        lastSection.content.push(el.cloneNode(true));
+      }
+    }
 
-    // Add the header row specifying the block name
-    cells.push(['Accordion']);
+    return acc;
+  }, []);
 
-    // Find all the sections with headings and content
-    const sections = element.querySelectorAll('h2');
+  // Build table rows from sections
+  const rows = sections.map((section) => [
+    section.title,
+    section.content.map(node => document.createElement('div').appendChild(node.cloneNode(true)).parentNode),
+  ]);
 
-    sections.forEach((heading) => {
-        const title = heading.textContent.trim();
+  // Add header row
+  const tableData = [['Accordion'], ...rows];
 
-        // Find content related to the heading
-        let content = [];
-        let sibling = heading.nextElementSibling;
+  // Create table
+  const table = WebImporter.DOMUtils.createTable(tableData, document);
 
-        while (sibling && sibling.tagName !== 'H2') {
-            if (sibling.tagName === 'P' || sibling.tagName === 'DIV') {
-                content.push(sibling.cloneNode(true));
-            }
-            sibling = sibling.nextElementSibling;
-        }
-
-        // Ensure content is properly extracted and included
-        if (content.length > 0) {
-            cells.push(createAccordionRow(title, content));
-        }
-    });
-
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-
-    // Replace the original element with the table
-    element.replaceWith(table);
+  // Replace element with table
+  element.replaceWith(table);
 }

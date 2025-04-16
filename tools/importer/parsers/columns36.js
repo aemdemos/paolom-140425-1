@@ -1,34 +1,67 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
+  // Correct header row to match the example exactly
   const headerRow = ['Columns'];
 
-  const columnOne = document.createElement('div');
-  const columnOneWrapper = element.querySelector('.SideBySideLayout__ContainerWrapper-sc-nb03j7-1');
-  const columnOneTitle = columnOneWrapper.querySelector('h2')?.textContent || '';
-  const columnOneContent = columnOneWrapper.querySelector('.RichText__StyledRichTextContent-sc-1j7koit-0')?.cloneNode(true) || document.createTextNode('');
-  const columnOneButtonGroup = columnOneWrapper.querySelectorAll('.NelComponents__ButtonGroup-sc-vsly48-10');
+  // First column content extraction
+  const firstColumnContent = document.createElement('div');
+  const firstHeading = element.querySelector('h2');
+  if (firstHeading) {
+    const headingClone = document.createElement('p');
+    headingClone.innerHTML = `<strong>${firstHeading.textContent}</strong>`; // Apply bold formatting
+    firstColumnContent.appendChild(headingClone);
+  }
 
-  columnOne.append(columnOneContent);
-  columnOneButtonGroup.forEach(button => {
-    columnOne.append(button.cloneNode(true));
+  const firstRichText = element.querySelector('div[data-component="RichText"]');
+  if (firstRichText) {
+    const richTextClone = firstRichText.cloneNode(true);
+    firstColumnContent.appendChild(richTextClone);
+  }
+
+  const buttonBlock = document.createElement('div');
+  buttonBlock.setAttribute('class', 'button-block'); // Structured container for buttons
+  const firstButtonGroup = element.querySelectorAll('div[data-component="ButtonGroup"] a');
+  firstButtonGroup.forEach((button) => {
+    const buttonClone = button.cloneNode(true);
+    buttonBlock.appendChild(buttonClone);
   });
+  firstColumnContent.appendChild(buttonBlock);
 
-  const columnTwo = document.createElement('div');
-  const columnTwoWrapper = element.querySelectorAll('.SideBySideLayout__ContainerWrapper-sc-nb03j7-1')[1];
-  const columnTwoTitle = columnTwoWrapper?.querySelector('h2')?.textContent || '';
-  const columnTwoContent = columnTwoWrapper?.querySelector('.RichText__StyledRichTextContent-sc-1j7koit-0')?.cloneNode(true) || document.createTextNode('');
-  const columnTwoList = columnTwoWrapper?.querySelector('.NelComponents__List-sc-vsly48-35')?.cloneNode(true) || document.createElement('ul');
+  // Second column content extraction
+  const secondColumnContent = document.createElement('div');
+  const searchHeading = element.querySelector('label[for]');
+  if (searchHeading) {
+    const headingClone = document.createElement('p');
+    headingClone.innerHTML = `<strong>${searchHeading.textContent}</strong>`; // Apply bold formatting
+    secondColumnContent.appendChild(headingClone);
+  }
 
-  columnTwo.append(columnTwoContent);
-  columnTwo.append(columnTwoList);
+  const searchForm = element.querySelector('form.SearchForm__OuterForm-sc-mctg6q-0');
+  if (searchForm) {
+    const formClone = searchForm.cloneNode(true);
+    secondColumnContent.appendChild(formClone);
+  }
 
+  const popularLinks = element.querySelectorAll('ul[data-component="LinkList"] li a');
+  if (popularLinks.length > 0) {
+    const linkList = document.createElement('ul');
+    popularLinks.forEach((link) => {
+      const listItem = document.createElement('li');
+      const linkClone = link.cloneNode(true);
+      listItem.appendChild(linkClone);
+      linkList.appendChild(listItem);
+    });
+    secondColumnContent.appendChild(linkList);
+  }
+
+  // Create table structure
   const cells = [
     headerRow,
-    [columnOneTitle, columnTwoTitle],
-    [columnOne, columnTwo],
+    [firstColumnContent, secondColumnContent],
   ];
 
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
-  element.replaceWith(block);
+  // Replace the original element with the newly created block table
+  element.replaceWith(blockTable);
 }

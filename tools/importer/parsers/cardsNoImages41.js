@@ -1,45 +1,47 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Cards (no images)'];
-  const rows = [];
+  const cards = [];
 
-  const cardElements = element.querySelectorAll('div[data-component="CardsGrid"] div[data-component="CardCTAButton"]');
-
-  cardElements.forEach((card) => {
-    const cardTitle = card.querySelector('h2[data-ref="heading"]')?.textContent.trim();
-    const cardDescription = card.querySelector('div[data-testid="CardContent"] div.Content-sc-mh9bui-0 p')?.textContent.trim();
-    const cardCTA = card.querySelector('a[data-testid="PrimaryButton"]')?.textContent.trim();
-
-    const cardContent = document.createElement('div');
-
-    if (cardTitle) {
-      const titleElement = document.createElement('strong');
-      titleElement.textContent = cardTitle;
-      cardContent.appendChild(titleElement);
+  // Extract card content: title, description, and call-to-action if available
+  element.querySelectorAll('div[data-component="CardCTAButton"]').forEach((cardElement) => {
+    // Extract the heading
+    const heading = cardElement.querySelector('h2');
+    const headingRow = [];
+    if (heading) {
+      const headingElement = document.createElement('strong');
+      headingElement.textContent = heading.textContent.trim();
+      headingRow.push(headingElement);
     }
 
-    if (cardDescription) {
-      const descriptionElement = document.createElement('p');
-      descriptionElement.textContent = cardDescription;
-      cardContent.appendChild(descriptionElement);
+    // Extract the description
+    const description = cardElement.querySelector('p');
+    const descriptionRow = [];
+    if (description) {
+      const descriptionText = document.createTextNode(description.textContent.trim());
+      descriptionRow.push(descriptionText);
     }
 
-    if (cardCTA) {
-      const ctaElement = document.createElement('p');
-      const linkElement = document.createElement('a');
-      linkElement.textContent = cardCTA;
-      const href = card.querySelector('a[data-testid="PrimaryButton"]')?.href;
-      if (href) {
-        linkElement.setAttribute('href', href);
-      }
-      ctaElement.appendChild(linkElement);
-      cardContent.appendChild(ctaElement);
+    // Extract the call-to-action
+    const cta = cardElement.querySelector('a');
+    const ctaRow = [];
+    if (cta) {
+      const ctaElement = document.createElement('a');
+      ctaElement.href = cta.href;
+      ctaElement.textContent = cta.textContent.trim();
+      ctaRow.push(ctaElement);
     }
 
-    rows.push([cardContent]);
+    // Add structured rows to cards
+    if (headingRow.length) cards.push(headingRow);
+    if (descriptionRow.length) cards.push(descriptionRow);
+    if (ctaRow.length) cards.push(ctaRow);
   });
 
-  const tableData = [headerRow, ...rows];
+  // Create the block table
+  const headerRow = ['Cards (no images)'];
+  const tableData = [headerRow, ...cards];
   const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+
+  // Replace the original element with the new block table
   element.replaceWith(blockTable);
 }

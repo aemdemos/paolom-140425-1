@@ -1,35 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract relevant elements dynamically
-  const headingElement = element.querySelector('[data-ref="heading"]');
+  const headerRow = ['Hero'];
+
+  // Extract the title
+  const titleElement = element.querySelector('.SectionHero__StyledHeading-sc-fol9tk-5');
+  const title = document.createElement('h1');
+  title.innerHTML = titleElement?.textContent || '';
+
+  // Extract the subheading
   const subheadingElement = element.querySelector('.Content-sc-mh9bui-0');
+  const subheading = document.createElement('p');
+  subheading.innerHTML = subheadingElement?.textContent || '';
 
-  // Create cells for the table
-  const headerRow = ['Hero']; // Header row must match example exactly
-
-  const contentRow = [];
-
-  // Handle edge cases for missing or empty elements
-  if (headingElement && headingElement.innerHTML.trim() !== '') {
-    const heading = document.createElement('h1');
-    heading.innerHTML = headingElement.innerHTML; // Dynamically extract heading content
-    contentRow.push(heading);
+  // Combine title and subheading
+  const content = document.createElement('div');
+  if (title.innerHTML) {
+    content.appendChild(title);
+  }
+  if (subheading.innerHTML) {
+    content.appendChild(subheading);
   }
 
-  // Avoid duplicate <p> tags by ensuring proper wrapping
-  if (subheadingElement && subheadingElement.innerHTML.trim() !== '') {
-    const subheading = document.createElement('p');
-    subheading.textContent = subheadingElement.textContent; // Use textContent instead of innerHTML
-    contentRow.push(subheading);
-  }
-
-  const cells = [
+  const rows = [
     headerRow,
-    contentRow.length > 0 ? [contentRow] : []
+    content.children.length > 0 ? [content] : [],
   ];
 
-  const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the table block
+  const blockTable = WebImporter.DOMUtils.createTable(rows, document);
 
-  // Replace original element
+  // Replace original element with the block table
   element.replaceWith(blockTable);
 }

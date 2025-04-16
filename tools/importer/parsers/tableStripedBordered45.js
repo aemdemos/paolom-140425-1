@@ -1,49 +1,52 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Correct header row based on example
-  const headerRow = ['Table (striped, bordered)'];
+    const headerRow = ['Table (striped, bordered)'];
 
-  // Initialize an array to hold the rows of the table
-  const rows = [];
+    const cells = [
+        headerRow,
+    ];
 
-  // Select all tables within the provided element
-  const tables = element.querySelectorAll('table');
-  tables.forEach((table) => {
-    // Extract and include the table caption as a row
-    const tableCaption = table.querySelector('caption small');
-    if (tableCaption) {
-      rows.push([document.createTextNode(tableCaption.textContent.trim())]);
-    }
+    const tableBlocks = element.querySelectorAll('table');
 
-    // Process each table row's cells
-    const tableRows = table.querySelectorAll('tbody tr');
-    tableRows.forEach((tr) => {
-      const cells = [];
-      tr.querySelectorAll('td, th').forEach((cell) => {
-        // Check if the cell contains a link and handle it dynamically
-        const link = cell.querySelector('a');
-        if (link) {
-          const anchor = document.createElement('a');
-          anchor.href = link.href;
-          anchor.target = '_blank';
-          anchor.textContent = link.textContent.trim();
-          cells.push(anchor);
-        } else {
-          // Handle normal text content
-          cells.push(cell.textContent.trim());
+    tableBlocks.forEach((table) => {
+        const caption = table.querySelector('caption');
+        const tableHeader = table.querySelector('thead');
+        const tableBody = table.querySelector('tbody');
+
+        const sectionContent = [];
+
+        if (caption) {
+            sectionContent.push(document.createElement('hr'));
+            const captionText = document.createElement('p');
+            captionText.textContent = caption.textContent.trim();
+            sectionContent.push(captionText);
         }
-      });
-      rows.push(cells);
+
+        if (tableHeader) {
+            const rows = tableHeader.querySelectorAll('tr');
+            rows.forEach((row) => {
+                const rowContent = [];
+                row.querySelectorAll('td, th').forEach((cell) => {
+                    rowContent.push(cell.textContent.trim());
+                });
+                sectionContent.push(rowContent);
+            });
+        }
+
+        if (tableBody) {
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach((row) => {
+                const rowContent = [];
+                row.querySelectorAll('td, th').forEach((cell) => {
+                    rowContent.push(cell.textContent.trim());
+                });
+                sectionContent.push(rowContent);
+            });
+        }
+
+        cells.push(sectionContent);
     });
 
-    // Add a standalone row with a separator after each table
-    const separator = document.createElement('hr');
-    rows.push([separator]);
-  });
-
-  // Create the block table using the extracted data
-  const block = WebImporter.DOMUtils.createTable([headerRow, ...rows], document);
-
-  // Replace the original element with the new block table
-  element.replaceWith(block);
+    const block = WebImporter.DOMUtils.createTable(cells, document);
+    element.replaceWith(block);
 }

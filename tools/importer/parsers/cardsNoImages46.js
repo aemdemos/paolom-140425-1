@@ -1,44 +1,49 @@
 /* global WebImporter */
-
 export default function parse(element, { document }) {
-  const cells = [];
-
-  // Add the header row
+  // Header row matching the example exactly
   const headerRow = ['Cards (no images)'];
-  cells.push(headerRow);
 
-  // Process each section within the element
+  // Initialize the table cells with the header row
+  const cells = [headerRow];
+
+  // Select all sections (cards) in the element
   const sections = element.querySelectorAll('[data-component="CardLinkList"]');
 
+  // Loop through each section (card)
   sections.forEach((section) => {
-    const heading = section.querySelector('h3')?.textContent.trim();
-    const listItems = Array.from(section.querySelectorAll('ul li a')).map((link) => {
-      const linkText = link.querySelector('span')?.textContent.trim();
-      const linkHref = link.getAttribute('href');
+    // Extract the heading
+    const heading = section.querySelector('[data-ref="heading"]');
+    const listItems = section.querySelectorAll('[data-ref="link"]');
 
-      // Create the link element
-      const linkElement = document.createElement('a');
-      linkElement.href = linkHref;
-      linkElement.textContent = linkText;
+    // Create content array for the card
+    const content = [];
 
-      return linkElement;
-    });
-
-    const contentCell = document.createElement('div');
-
+    // Add heading as a strong element, if it exists
     if (heading) {
-      const headingElement = document.createElement('h3');
-      headingElement.textContent = heading;
-      contentCell.appendChild(headingElement);
+      const headingElement = document.createElement('strong');
+      headingElement.textContent = heading.textContent;
+      content.push(headingElement);
     }
 
-    listItems.forEach(item => {
-      contentCell.appendChild(item);
-    });
+    // Add links from the list, each with a <br> for spacing
+    if (listItems.length > 0) {
+      listItems.forEach((link, index) => {
+        const linkElement = document.createElement('a');
+        linkElement.href = link.getAttribute('href');
+        linkElement.textContent = link.textContent;
+        content.push(linkElement);
+        // Ensure spacing using <br>, except after the last link
+        if (index < listItems.length - 1) {
+          content.push(document.createElement('br'));
+        }
+      });
+    }
 
-    cells.push([contentCell]);
+    // Add the content array as a row to the table
+    cells.push([content]);
   });
 
+  // Create the block table using WebImporter.DOMUtils
   const blockTable = WebImporter.DOMUtils.createTable(cells, document);
 
   // Replace the original element with the new block table

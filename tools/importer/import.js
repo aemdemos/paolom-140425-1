@@ -13,53 +13,53 @@
 /* eslint-disable no-console */
 import search1Parser from './parsers/search1.js';
 import embedVideo8Parser from './parsers/embedVideo8.js';
-import cardsNoImages10Parser from './parsers/cardsNoImages10.js';
+import tabs7Parser from './parsers/tabs7.js';
 import hero6Parser from './parsers/hero6.js';
 import tabs11Parser from './parsers/tabs11.js';
-import hero2Parser from './parsers/hero2.js';
-import columns12Parser from './parsers/columns12.js';
-import tableStripedBordered13Parser from './parsers/tableStripedBordered13.js';
+import cardsNoImages10Parser from './parsers/cardsNoImages10.js';
 import search17Parser from './parsers/search17.js';
-import tableStripedBordered14Parser from './parsers/tableStripedBordered14.js';
-import cardsNoImages19Parser from './parsers/cardsNoImages19.js';
-import tabs7Parser from './parsers/tabs7.js';
-import accordion15Parser from './parsers/accordion15.js';
-import accordion21Parser from './parsers/accordion21.js';
 import columns9Parser from './parsers/columns9.js';
+import accordion15Parser from './parsers/accordion15.js';
+import hero2Parser from './parsers/hero2.js';
+import accordion21Parser from './parsers/accordion21.js';
+import columns12Parser from './parsers/columns12.js';
+import cardsNoImages19Parser from './parsers/cardsNoImages19.js';
 import accordion25Parser from './parsers/accordion25.js';
+import columns4Parser from './parsers/columns4.js';
 import cardsNoImages26Parser from './parsers/cardsNoImages26.js';
-import cardsNoImages20Parser from './parsers/cardsNoImages20.js';
 import search28Parser from './parsers/search28.js';
-import cardsNoImages34Parser from './parsers/cardsNoImages34.js';
+import cardsNoImages20Parser from './parsers/cardsNoImages20.js';
+import columns29Parser from './parsers/columns29.js';
+import cards5Parser from './parsers/cards5.js';
+import columns3Parser from './parsers/columns3.js';
+import tableStriped22Parser from './parsers/tableStriped22.js';
+import accordion31Parser from './parsers/accordion31.js';
 import accordion33Parser from './parsers/accordion33.js';
+import cardsNoImages34Parser from './parsers/cardsNoImages34.js';
+import cards38Parser from './parsers/cards38.js';
+import cardsNoImages37Parser from './parsers/cardsNoImages37.js';
+import tableStripedBordered14Parser from './parsers/tableStripedBordered14.js';
 import accordion23Parser from './parsers/accordion23.js';
 import cards35Parser from './parsers/cards35.js';
-import columns36Parser from './parsers/columns36.js';
-import cardsNoImages37Parser from './parsers/cardsNoImages37.js';
-import accordion31Parser from './parsers/accordion31.js';
-import tabs39Parser from './parsers/tabs39.js';
-import columns4Parser from './parsers/columns4.js';
-import tableStriped22Parser from './parsers/tableStriped22.js';
-import columns40Parser from './parsers/columns40.js';
-import columns29Parser from './parsers/columns29.js';
-import accordion42Parser from './parsers/accordion42.js';
-import cardsNoImages41Parser from './parsers/cardsNoImages41.js';
-import columns3Parser from './parsers/columns3.js';
-import cardsNoImages46Parser from './parsers/cardsNoImages46.js';
-import tabs47Parser from './parsers/tabs47.js';
-import cardsNoImages48Parser from './parsers/cardsNoImages48.js';
-import columns44Parser from './parsers/columns44.js';
-import tableStripedBordered45Parser from './parsers/tableStripedBordered45.js';
-import cardsNoImages53Parser from './parsers/cardsNoImages53.js';
-import cards38Parser from './parsers/cards38.js';
-import cardsNoImages54Parser from './parsers/cardsNoImages54.js';
-import cards55Parser from './parsers/cards55.js';
-import cards56Parser from './parsers/cards56.js';
-import cards5Parser from './parsers/cards5.js';
-import hero52Parser from './parsers/hero52.js';
-import tableStripedBordered43Parser from './parsers/tableStripedBordered43.js';
 import embedVideo18Parser from './parsers/embedVideo18.js';
+import columns36Parser from './parsers/columns36.js';
+import columns44Parser from './parsers/columns44.js';
+import cardsNoImages41Parser from './parsers/cardsNoImages41.js';
+import accordion42Parser from './parsers/accordion42.js';
+import cardsNoImages46Parser from './parsers/cardsNoImages46.js';
+import tableStripedBordered13Parser from './parsers/tableStripedBordered13.js';
+import cardsNoImages48Parser from './parsers/cardsNoImages48.js';
+import cardsNoImages53Parser from './parsers/cardsNoImages53.js';
+import tabs47Parser from './parsers/tabs47.js';
+import hero52Parser from './parsers/hero52.js';
+import cardsNoImages54Parser from './parsers/cardsNoImages54.js';
+import cards56Parser from './parsers/cards56.js';
+import cards55Parser from './parsers/cards55.js';
+import tabs39Parser from './parsers/tabs39.js';
+import columns40Parser from './parsers/columns40.js';
+import tableStripedBordered43Parser from './parsers/tableStripedBordered43.js';
 import tableStripedBordered49Parser from './parsers/tableStripedBordered49.js';
+import tableStripedBordered45Parser from './parsers/tableStripedBordered45.js';
 import headerParser from './parsers/header.js';
 import metadataParser from './parsers/metadata.js';
 import {
@@ -73,53 +73,53 @@ const parsers = {
   metadata: metadataParser,
   search1: search1Parser,
   embedVideo8: embedVideo8Parser,
-  cardsNoImages10: cardsNoImages10Parser,
+  tabs7: tabs7Parser,
   hero6: hero6Parser,
   tabs11: tabs11Parser,
-  hero2: hero2Parser,
-  columns12: columns12Parser,
-  tableStripedBordered13: tableStripedBordered13Parser,
+  cardsNoImages10: cardsNoImages10Parser,
   search17: search17Parser,
-  tableStripedBordered14: tableStripedBordered14Parser,
-  cardsNoImages19: cardsNoImages19Parser,
-  tabs7: tabs7Parser,
-  accordion15: accordion15Parser,
-  accordion21: accordion21Parser,
   columns9: columns9Parser,
+  accordion15: accordion15Parser,
+  hero2: hero2Parser,
+  accordion21: accordion21Parser,
+  columns12: columns12Parser,
+  cardsNoImages19: cardsNoImages19Parser,
   accordion25: accordion25Parser,
+  columns4: columns4Parser,
   cardsNoImages26: cardsNoImages26Parser,
-  cardsNoImages20: cardsNoImages20Parser,
   search28: search28Parser,
-  cardsNoImages34: cardsNoImages34Parser,
+  cardsNoImages20: cardsNoImages20Parser,
+  columns29: columns29Parser,
+  cards5: cards5Parser,
+  columns3: columns3Parser,
+  tableStriped22: tableStriped22Parser,
+  accordion31: accordion31Parser,
   accordion33: accordion33Parser,
+  cardsNoImages34: cardsNoImages34Parser,
+  cards38: cards38Parser,
+  cardsNoImages37: cardsNoImages37Parser,
+  tableStripedBordered14: tableStripedBordered14Parser,
   accordion23: accordion23Parser,
   cards35: cards35Parser,
-  columns36: columns36Parser,
-  cardsNoImages37: cardsNoImages37Parser,
-  accordion31: accordion31Parser,
-  tabs39: tabs39Parser,
-  columns4: columns4Parser,
-  tableStriped22: tableStriped22Parser,
-  columns40: columns40Parser,
-  columns29: columns29Parser,
-  accordion42: accordion42Parser,
-  cardsNoImages41: cardsNoImages41Parser,
-  columns3: columns3Parser,
-  cardsNoImages46: cardsNoImages46Parser,
-  tabs47: tabs47Parser,
-  cardsNoImages48: cardsNoImages48Parser,
-  columns44: columns44Parser,
-  tableStripedBordered45: tableStripedBordered45Parser,
-  cardsNoImages53: cardsNoImages53Parser,
-  cards38: cards38Parser,
-  cardsNoImages54: cardsNoImages54Parser,
-  cards55: cards55Parser,
-  cards56: cards56Parser,
-  cards5: cards5Parser,
-  hero52: hero52Parser,
-  tableStripedBordered43: tableStripedBordered43Parser,
   embedVideo18: embedVideo18Parser,
+  columns36: columns36Parser,
+  columns44: columns44Parser,
+  cardsNoImages41: cardsNoImages41Parser,
+  accordion42: accordion42Parser,
+  cardsNoImages46: cardsNoImages46Parser,
+  tableStripedBordered13: tableStripedBordered13Parser,
+  cardsNoImages48: cardsNoImages48Parser,
+  cardsNoImages53: cardsNoImages53Parser,
+  tabs47: tabs47Parser,
+  hero52: hero52Parser,
+  cardsNoImages54: cardsNoImages54Parser,
+  cards56: cards56Parser,
+  cards55: cards55Parser,
+  tabs39: tabs39Parser,
+  columns40: columns40Parser,
+  tableStripedBordered43: tableStripedBordered43Parser,
   tableStripedBordered49: tableStripedBordered49Parser,
+  tableStripedBordered45: tableStripedBordered45Parser,
 };
 
 WebImporter.Import = {

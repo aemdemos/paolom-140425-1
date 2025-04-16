@@ -1,41 +1,93 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
+  // Helper function to extract the content from list items
+  const extractCardData = (list) => {
+    return Array.from(list.querySelectorAll('li')).map((item) => {
+      const heading = item.querySelector('p strong');
+      const description = item.querySelector('p');
+
+      const cardContent = [];
+
+      if (heading) {
+        const strongElement = document.createElement('strong');
+        strongElement.textContent = heading.textContent;
+        cardContent.push(strongElement);
+      }
+
+      if (description) {
+        const descriptionClone = description.cloneNode(true);
+        descriptionClone.querySelector('strong')?.remove(); // Remove strong tag from description if it exists
+        cardContent.push(descriptionClone);
+      }
+
+      return cardContent;
+    });
+  };
+
+  const extractSidebarContent = (sidebar) => {
+    const sidebarContent = [];
+
+    // Extract "You can apply if you:" content
+    const applyHeading = sidebar.querySelector('h3');
+    const applyList = sidebar.querySelector('ul');
+
+    if (applyHeading && applyList) {
+      const applyHeadingElement = document.createElement('strong');
+      applyHeadingElement.textContent = applyHeading.textContent;
+      sidebarContent.push(applyHeadingElement);
+
+      const listItems = Array.from(applyList.querySelectorAll('li')).map((li) => li.cloneNode(true));
+      const ulElement = document.createElement('ul');
+      ulElement.append(...listItems);
+      sidebarContent.push(ulElement);
+    }
+
+    // Extract "Note:" content
+    const noteMessage = sidebar.querySelector('[data-ref="message"]');
+    if (noteMessage) {
+      const noteHeading = noteMessage.querySelector('[data-ref="messageHeader"]');
+      const noteDescription = noteMessage.querySelector('.Content-sc-mh9bui-0');
+
+      if (noteHeading) {
+        const noteHeadingElement = document.createElement('strong');
+        noteHeadingElement.textContent = noteHeading.textContent;
+        sidebarContent.push(noteHeadingElement);
+      }
+
+      if (noteDescription) {
+        const noteDescriptionClone = noteDescription.cloneNode(true);
+        sidebarContent.push(noteDescriptionClone);
+      }
+    }
+
+    return sidebarContent;
+  };
+
+  // Extract relevant content from the input element
+  const heading = element.querySelector('h2');
+  const list = element.querySelector('ul');
+  const sidebar = element.querySelector('.ContentWithSidebar__StyledSidebarWrapper-sc-jz7j6b-2');
+
+  if (!heading || !list || !sidebar) {
+    console.error('Required elements not found in the provided HTML structure');
+    return;
+  }
+
+  // Create table cells
   const headerRow = ['Cards (no images)'];
+  const cardRows = extractCardData(list).map((cardContent) => [cardContent]);
+  const sidebarContent = extractSidebarContent(sidebar);
 
-  const cards = Array.from(element.querySelectorAll('li')).map((card) => {
-    // Extract title and description dynamically
-    const titleElement = card.querySelector('p > strong');
-    const descriptionElement = card.querySelector('p');
+  // Combine rows into table structure
+  const tableData = [headerRow, ...cardRows];
 
-    const title = titleElement ? titleElement.textContent.trim() : '';
-    const description = descriptionElement ? descriptionElement.textContent.replace(title, '').trim() : '';
-
-    // Ensure only rows with valid content are included
-    if (!title && !description) {
-      return null; // Skip empty rows
-    }
-
-    // Combine extracted title and description with proper HTML formatting
-    const cardContent = document.createElement('div');
-    if (title) {
-      const titleNode = document.createElement('strong');
-      titleNode.textContent = title;
-      cardContent.appendChild(titleNode);
-    }
-    if (description) {
-      const descriptionNode = document.createElement('p');
-      descriptionNode.textContent = description;
-      cardContent.appendChild(descriptionNode);
-    }
-
-    return [cardContent];
-  }).filter(Boolean); // Filter out null rows
-
-  const tableData = [headerRow, ...cards];
+  if (sidebarContent.length > 0) {
+    tableData.push([sidebarContent]);
+  }
 
   // Create the block table
-  const table = WebImporter.DOMUtils.createTable(tableData, document);
+  const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
 
-  // Replace the original element with the table
-  element.replaceWith(table);
+  // Replace the original element with the new block table
+  element.replaceWith(blockTable);
 }

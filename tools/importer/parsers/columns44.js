@@ -1,57 +1,66 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-    // Helper function to extract content from a column
-    const extractColumnContent = (columnElement) => {
-        const header = columnElement.querySelector('h3');
-        const paragraphs = columnElement.querySelectorAll('div[data-component="RichText"] p');
-        const link = columnElement.querySelector('a[data-ref="link"]');
-
-        // Extract text and link content
-        const headerText = header ? header.textContent.trim() : '';
-        const paragraphTexts = Array.from(paragraphs).map(p => p.textContent.trim());
-        const linkElement = link ? document.createElement('a') : null;
-        if (linkElement) {
-            linkElement.href = link.href;
-            linkElement.textContent = link.textContent.trim();
-        }
-
-        return {
-            headerText,
-            paragraphTexts,
-            linkElement,
-        };
-    };
-
-    // Extract columns
-    const columns = element.querySelectorAll('div[data-ref="gridColumn"]');
-    const columnContent = Array.from(columns).map(extractColumnContent);
-
-    // Create table cells
+    // Define the header row to match the example format exactly
     const headerRow = ['Columns'];
-    const contentRow = columnContent.map(({ headerText, paragraphTexts, linkElement }) => {
-        const container = document.createElement('div');
 
-        const header = document.createElement('h3');
-        header.textContent = headerText;
-        container.appendChild(header);
+    // Extract relevant content from the input element
+    const columns = Array.from(element.querySelectorAll('div[data-ref="gridColumn"]')).map((column) => {
+        const heading = column.querySelector('h3')?.textContent.trim();
 
-        paragraphTexts.forEach(text => {
-            const paragraph = document.createElement('p');
-            paragraph.textContent = text;
-            container.appendChild(paragraph);
+        // Extract image element
+        const image = column.querySelector('img');
+        const imageElement = image ? (() => {
+            const img = document.createElement('img');
+            img.src = image.src;
+            img.alt = image.alt;
+            return img;
+        })() : null;
+
+        // Extract paragraphs
+        const paragraphs = Array.from(column.querySelectorAll('div[data-component="RichText"] p')).map((p) => {
+            const para = document.createElement('p');
+            para.textContent = p.textContent.trim();
+            return para;
         });
 
+        // Extract link
+        const link = column.querySelector('a[data-ref="link"]');
+        const linkElement = link ? (() => {
+            const anchor = document.createElement('a');
+            anchor.href = link.href;
+            anchor.textContent = link.textContent.trim();
+            return anchor;
+        })() : null;
+
+        // Combine all extracted elements into a single cell
+        const contentContainer = document.createElement('div');
+        if (heading) {
+            const headingElement = document.createElement('h3');
+            headingElement.textContent = heading;
+            contentContainer.appendChild(headingElement);
+        }
+        if (imageElement) {
+            contentContainer.appendChild(imageElement);
+        }
+        paragraphs.forEach((paragraph) => {
+            contentContainer.appendChild(paragraph);
+        });
         if (linkElement) {
-            container.appendChild(linkElement);
+            contentContainer.appendChild(linkElement);
         }
 
-        return container;
+        return contentContainer;
     });
 
-    // Create table block
-    const tableData = [headerRow, contentRow];
-    const blockTable = WebImporter.DOMUtils.createTable(tableData, document);
+    // Structure the table array
+    const cells = [
+        headerRow,
+        columns
+    ];
 
-    // Replace original element with the block table
+    // Create the block table
+    const blockTable = WebImporter.DOMUtils.createTable(cells, document);
+
+    // Replace the original element with the block table
     element.replaceWith(blockTable);
 }
